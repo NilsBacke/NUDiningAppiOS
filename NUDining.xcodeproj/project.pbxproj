@@ -14,6 +14,7 @@
 		ED5D17D121C6004B001C6664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5D17D021C6004B001C6664 /* Assets.xcassets */; };
 		ED5D17D421C6004B001C6664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED5D17D221C6004B001C6664 /* LaunchScreen.storyboard */; };
 		ED5D17FA21C6018B001C6664 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED5D17F921C6018A001C6664 /* GoogleService-Info.plist */; };
+		ED7194FB21C739800086BE7E /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7194FA21C739800086BE7E /* Menu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		ED5D17D321C6004B001C6664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED5D17D521C6004B001C6664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED5D17F921C6018A001C6664 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ED7194FA21C739800086BE7E /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,15 +82,40 @@
 		ED5D17C821C60049001C6664 /* NUDining */ = {
 			isa = PBXGroup;
 			children = (
+				ED7194FD21C739E10086BE7E /* Controller */,
+				ED7194FC21C739D60086BE7E /* View */,
+				ED7194F921C739510086BE7E /* Model */,
 				ED5D17F921C6018A001C6664 /* GoogleService-Info.plist */,
 				ED5D17C921C60049001C6664 /* AppDelegate.swift */,
-				ED5D17CB21C60049001C6664 /* ViewController.swift */,
-				ED5D17CD21C60049001C6664 /* Main.storyboard */,
 				ED5D17D021C6004B001C6664 /* Assets.xcassets */,
 				ED5D17D221C6004B001C6664 /* LaunchScreen.storyboard */,
 				ED5D17D521C6004B001C6664 /* Info.plist */,
 			);
 			path = NUDining;
+			sourceTree = "<group>";
+		};
+		ED7194F921C739510086BE7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED7194FA21C739800086BE7E /* Menu.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		ED7194FC21C739D60086BE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED5D17CD21C60049001C6664 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		ED7194FD21C739E10086BE7E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ED5D17CB21C60049001C6664 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CC21C60049001C6664 /* ViewController.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
 			);
