@@ -1,23 +1,12 @@
 {
   "name": "functions",
   "description": "Cloud Functions for Firebase",
-  "engines": {
-    "node": "8"
+  "engines": { 
+    "node": "8" 
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "cheerio": "^1.0.0-rc.2",
-    "firebase-admin": "^6.4.0",
-    "firebase-functions": "^2.1.0",
-    "jsdom": "^13.1.0",
-    "phantom": "^6.0.3",
-    "puppeteer": "^1.11.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2",
-    "selenium-webdriver": "^4.0.0-alpha.1",
-    "spooky": "^0.2.5",
-    "x-ray": "^2.3.3",
-    "x-ray-phantom": "^1.0.1"
+    "firebase-admin": "^6.0.0",
+    "firebase-functions": "^2.0.5"
   },
   "private": true
 }

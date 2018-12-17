@@ -12,28 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 const functions = require("firebase-functions");
-const admin = require("firebase-admin");
-const axios = require("axios");
-const rp = require("request-promise");
-const cheerio = require("cheerio");
-admin.initializeApp({
-  credential: admin.credential.applicationDefault()
+
+exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(message => {
+  console.log("This job is run every 24 hours!");
+
+  // code goes here
+
+  return true;
 });
-
-exports.five_min_job = functions.pubsub
-  .topic("five-min-tick")
-  .onPublish(message => {
-    console.log("This job is run every 5 minutes!");
-
-    var IVdinner = await getMenuData("International Village", "Dinner");
-
-    return true;
-  });
-
-function getMenuData(place, time) {
-  return new Promise(function(resolve) {
-    rp("https://new.dineoncampus.com/Northeastern/menus").then(html => {
-      let $ = cheerio.load(html);
-    });
-  });
-}
