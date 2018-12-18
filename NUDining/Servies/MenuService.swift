@@ -12,7 +12,7 @@ import FirebaseDatabase
 struct MenuService {
     
     private static func getURL(location: Location) -> String {
-        return "https://api.dineoncampus.com/v1/location/menu?site_id=5751fd2b90975b60e048929a&location_id=\(self.getLocationID(from: location))&platform=0&date=2018-12-17";
+        return "https://api.dineoncampus.com/v1/location/menu?site_id=5751fd2b90975b60e048929a&location_id=" + self.getLocationID(from: location) + "&platform=0&date=2018-12-17";
     }
     
     static func getAllMenus() {
