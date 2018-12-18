@@ -7,5 +7,6 @@ target 'NUDining' do
 
   # Pods for NUDining
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
 end
