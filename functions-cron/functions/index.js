@@ -11,24 +11,72 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-admin.initializeApp({
+const axios = require("axios");
+
+const app = admin.initializeApp({
   credential: admin.credential.applicationDefault()
 });
-
-const axios = require("axios");
-const functions = require("firebase-functions");
 
 var nu_site_id = "5751fd2b90975b60e048929a";
 
 exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(message => {
   console.log("This job is run every 24 hours!");
+  console.log(process.env.FIREBASE_CONFIG);
+  var db = admin.firestore();
+  db.settings({timestampsInSnapshots: true}); // to suppress warning
 
   // code goes here
-  
+  db.collection('devices').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      console.log(doc.id, '=>', doc.data());
+    });
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
+  /*
+  var devices = devices_ref.get().then(snapshot => {
+    snapshot.forEach(doc => {
+      var deviceID = doc.deviceID;
+      var preferredFoods = doc.preferredFoods;
+      console.log(deviceID + "=>" + preferredFoods);
+    });
+  });*/
 
   return true;
 });
+
+/*
+ * Returns a list of foods at a site
+ */
+function getAllFoods(site_id, date) {
+  var foods = [];
+  var locations_obj = getLocationsJSON(site_id).then(data => { return data; });
+  locations_obj.locations.forEach(location => {
+    foods.concat(getAllFoodsAtLocation(site_id, location.id, location.name, date));
+  });
+  return foods;
+}
+
+function getAllFoodsAtLocation(site_id, location_id, location_name, date) {
+  var foods = [];
+  var menu_obj = getMenuJSON(site_id, location_id, date).then(data => { return data; });
+  menu_obj.menu.periods.forEach(period => {
+    period.categories.forEach(category => {
+      category.items.forEach(item => {
+        foods.push({"name":item.name, "period":period.name, "location":location_name});
+      })
+    })
+  });
+  return foods;
+}
+
+function sendMessageToDevice(deviceID, msg) {
+  // Implement me!
+}
 
 function getLocationsJSON(site_id) {
   return new Promise(function(resolve) {
@@ -74,47 +122,4 @@ function getMenuJSON(site_id, location_id, date) {
         resolve("error");
       })
   })
-}
-
-/*
- * Extracts the meal names from a specific dining period from the given
- *  menu object.
- *
- * menu_obj: A menu query response in JSON.
- * period: the name of the dining period, one of "Breakfast, Lunch, Dinner"
- */
-function getMealNamesInPeriod(menu_obj, period) {
-  var meal_names = [];
-  // Assumes the data is well formed, i.e. there are no duplicates
-  var menu_at_period = menu_obj.menu.periods
-    .filter(period => period.name == period)[0];
-  menu_at_period.categories.forEach(category => {
-    category.items.forEach(item => {
-      meal_names.push(item.name);
-    });
-  });
-  return meal_names;
-}
-
-// TODO: Maybe reimplement this asynchronously.
-/*
- * Maps meal names to dining halls for a specific meal.
- * Returns an array of pairs, where each pair is a two-element array,
- *  of meal names and dining hall names. The data is in this format to make
- *  filtering through it easier later on.
- *
- * period: the dining period to query
- * date: the date to query
- */
-function getAllMealNamesInPeriodOnDate(period, date) {
-  var meal_dh_pairs = [];
-  var locations_obj = await getLocationsJSON();
-  locations_obj.locations.forEach(function(loc) {
-    var loc_id = loc.id;
-    var loc_name = loc.name;
-    var menu_obj = await getMenuJSON(nu_site_id, loc_id, date);
-    var meal_names = getMealNamesInPeriod(menu_obj, period, date);
-    meal_names.forEach(name => meal_dh_pairs.push([meal, loc_name]));
-  });
-  return meal_dh_pairs;
 }
