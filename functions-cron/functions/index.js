@@ -21,33 +21,43 @@ const app = admin.initializeApp({
 
 var nu_site_id = "5751fd2b90975b60e048929a";
 
-exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(message => {
-  console.log("This job is run every 24 hours!");
-  console.log(process.env.FIREBASE_CONFIG);
-  var db = admin.firestore();
-  db.settings({timestampsInSnapshots: true}); // to suppress warning
+exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(cron);
 
-  // code goes here
-  db.collection('devices').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.id, '=>', doc.data());
-    });
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
-  });
-  /*
-  var devices = devices_ref.get().then(snapshot => {
-    snapshot.forEach(doc => {
-      var deviceID = doc.deviceID;
-      var preferredFoods = doc.preferredFoods;
-      console.log(deviceID + "=>" + preferredFoods);
-    });
-  });*/
+function cron(message, context) {
+  try {
+    console.log("This job is run every 24 hours!");
+    console.log(process.env.FIREBASE_CONFIG);
+    console.log("STARTING FIRESTORE");
+    var db = admin.firestore();
+    db.settings({timestampsInSnapshots: true}); // to suppress warning
+    console.log("SUCCESS");
+    console.log("QUERYING DATABASE");
 
-  return true;
-});
+    db.collection('devices').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        db.collection('devices').doc(doc.id).collection('preferredFoods').get()
+        .then((preferredFoods_snap) => {
+          preferredFoods_snap.forEach((food) => {
+            console.log(food.data().food);
+          });
+        })
+        .catch((err) => {
+          console.log("Error", err);
+        });
+        //console.log(doc.id, '=>', doc.data());
+      });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
+
+    return true;
+  }
+  catch (err) {
+
+  }
+}
 
 /*
  * Returns a list of foods at a site
