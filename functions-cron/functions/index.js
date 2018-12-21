@@ -11,6 +11,96 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.io/#x15.4.4.19
+if (!Array.prototype.map) {
+
+  Array.prototype.map = function(callback/*, thisArg*/) {
+
+    var T, A, k;
+
+    if (this == null) {
+      throw new TypeError('this is null or not defined');
+    }
+
+    // 1. Let O be the result of calling ToObject passing the |this|
+    //    value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get internal
+    //    method of O with the argument "length".
+    // 3. Let len be ToUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If IsCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if (typeof callback !== 'function') {
+      throw new TypeError(callback + ' is not a function');
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (arguments.length > 1) {
+      T = arguments[1];
+    }
+
+    // 6. Let A be a new array created as if by the expression new Array(len)
+    //    where Array is the standard built-in constructor with that name and
+    //    len is the value of len.
+    A = new Array(len);
+
+    // 7. Let k be 0
+    k = 0;
+
+    // 8. Repeat, while k < len
+    while (k < len) {
+
+      var kValue, mappedValue;
+
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal
+      //    method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal
+        //    method of O with argument Pk.
+        kValue = O[k];
+
+        // ii. Let mappedValue be the result of calling the Call internal
+        //     method of callback with T as the this value and argument
+        //     list containing kValue, k, and O.
+        mappedValue = callback.call(T, kValue, k, O);
+
+        // iii. Call the DefineOwnProperty internal method of A with arguments
+        // Pk, Property Descriptor
+        // { Value: mappedValue,
+        //   Writable: true,
+        //   Enumerable: true,
+        //   Configurable: true },
+        // and false.
+
+        // In browsers that support Object.defineProperty, use the following:
+        // Object.defineProperty(A, k, {
+        //   value: mappedValue,
+        //   writable: true,
+        //   enumerable: true,
+        //   configurable: true
+        // });
+
+        // For best browser support, use the following:
+        A[k] = mappedValue;
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+
+    // 9. return A
+    return A;
+  };
+}
+
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const axios = require("axios");
@@ -32,24 +122,51 @@ function cron(message, context) {
     db.settings({timestampsInSnapshots: true}); // to suppress warning
     console.log("SUCCESS");
     console.log("QUERYING DATABASE");
+    /*
+     * Food object:
+     * {
+     *  "name" : name
+     *  "period" : period
+     *  "location" : location_name
+     * }
+     */
 
-    db.collection('devices').get()
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        db.collection('devices').doc(doc.id).collection('preferredFoods').get()
-        .then((preferredFoods_snap) => {
-          preferredFoods_snap.forEach((food) => {
-            console.log(food.data().food);
+    var date = "2018-12-17";
+    getAllLocations(nu_site_id)
+    .then((locations) => {
+      console.log(locations.map((loc) => loc.name));
+      locations.forEach((location) => {
+        getAllFoodsAtLocation(nu_site_id, location.id, location.name, date)
+        .then((foods_from_menu) => {
+          db.collection('devices')
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((doc) => {
+              db.collection('devices').doc(doc.id).collection('preferredFoods')
+              .get()
+              .then((preferredFoods_snap) => {
+                var foodPrefs = preferredFoods_snap.docs
+                      .map((preferredFood_entry) => preferredFood_entry.data().food);
+                foodPrefs.forEach((foodPref) => {
+                  // TODO: Filter through list of foods for ones that have the same name as the food preference, then send messages to devices
+                  var matches = foods_from_menu.filter((food_from_menu) => foodPref == food_from_menu.name);
+                  matches.forEach((match) => {
+                    console.log("sending message"); // SEND MESSAGE HERE
+                    sendMessageToDevice(doc.data().deviceID, "msg");
+                  });
+                  console.log("CHECKING at", location.name);
+                });
+              })
+              .catch((err) => {
+                console.log("Error", err);
+              });
+            });
+          })
+          .catch((err) => {
+            console.log('Error getting documents', err);
           });
-        })
-        .catch((err) => {
-          console.log("Error", err);
         });
-        //console.log(doc.id, '=>', doc.data());
       });
-    })
-    .catch((err) => {
-      console.log('Error getting documents', err);
     });
 
     return true;
@@ -59,33 +176,76 @@ function cron(message, context) {
   }
 }
 
+function sendMessageToDevice(deviceID, msg) {
+  // Implement me!
+  var message = {
+    data: msg,
+    token: deviceID
+  }
+
+  admin.messaging().send(message)
+  .then((response) => {
+    // Response is a message ID string.
+    console.log('Successfully sent message:', response);
+  })
+  .catch((error) => {
+    console.log('Error sending message:', error);
+  });
+}
+
+function getAllLocations(site_id) {
+  return new Promise(function(resolve, reject) {
+    getLocationsJSON(site_id)
+    .then((data) => {
+      var foods = [];
+      resolve(data.locations);
+    })
+  });
+}
+
 /*
  * Returns a list of foods at a site
  */
 function getAllFoods(site_id, date) {
-  var foods = [];
-  var locations_obj = getLocationsJSON(site_id).then(data => { return data; });
-  locations_obj.locations.forEach(location => {
-    foods.concat(getAllFoodsAtLocation(site_id, location.id, location.name, date));
+  return new Promise(function(resolve, reject) {
+    getAllLocations(site_id)
+    .then((locations) => {
+      var foods = [];
+      data.locations.forEach(location => {
+        getAllFoodsAtLocation(site_id, location.id, location.name, date).then((foods_at_loc) => {
+          foods.concat(foods_at_loc);
+        });
+      });
+      resolve(foods);
+    })
+    .catch((err) => {
+      resolve('error'); //todo, reject promise here maybe
+    });
   });
-  return foods;
+
+  //getAllFoodsAtLocation(site_id, location.id, location.name, date).
 }
+
+// Note: flatten 2d array:
+// [].concat.apply([], arrays)
 
 function getAllFoodsAtLocation(site_id, location_id, location_name, date) {
-  var foods = [];
-  var menu_obj = getMenuJSON(site_id, location_id, date).then(data => { return data; });
-  menu_obj.menu.periods.forEach(period => {
-    period.categories.forEach(category => {
-      category.items.forEach(item => {
-        foods.push({"name":item.name, "period":period.name, "location":location_name});
-      })
+  return new Promise(function(resolve, reject) {
+    getMenuJSON(site_id, location_id, date).then((data) => {
+      var foods = [];
+      data.menu.periods.forEach(period => {
+        period.categories.forEach(category => {
+          category.items.forEach(item => {
+            foods.push({"name":item.name, "period":period.name, "location":location_name});
+          });
+        });
+      });
+      resolve(foods);
     })
+    .catch((err) => {
+      // err
+    });
   });
-  return foods;
-}
-
-function sendMessageToDevice(deviceID, msg) {
-  // Implement me!
 }
 
 function getLocationsJSON(site_id) {
