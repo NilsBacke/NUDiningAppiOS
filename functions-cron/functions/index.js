@@ -116,22 +116,10 @@ exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(cron);
 function cron(message, context) {
   try {
     console.log("This job is run every 24 hours!");
-    console.log(process.env.FIREBASE_CONFIG);
-    console.log("STARTING FIRESTORE");
     var db = admin.firestore();
     db.settings({timestampsInSnapshots: true}); // to suppress warning
-    console.log("SUCCESS");
-    console.log("QUERYING DATABASE");
-    /*
-     * Food object:
-     * {
-     *  "name" : name
-     *  "period" : period
-     *  "location" : location_name
-     * }
-     */
 
-    var date = "2018-12-17";
+    var date = "2018-12-17"; // TODO: Get today's date
     getAllLocations(nu_site_id)
     .then((locations) => {
       console.log(locations.map((loc) => loc.name));
@@ -148,7 +136,6 @@ function cron(message, context) {
                 var foodPrefs = preferredFoods_snap.docs
                       .map((preferredFood_entry) => preferredFood_entry.data().food);
                 foodPrefs.forEach((foodPref) => {
-                  // TODO: Filter through list of foods for ones that have the same name as the food preference, then send messages to devices
                   var matches = foods_from_menu.filter((food_from_menu) => foodPref == food_from_menu.name);
                   matches.forEach((match) => {
                     console.log("sending message"); // SEND MESSAGE HERE
