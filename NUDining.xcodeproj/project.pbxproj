@@ -65,12 +65,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		ED413C8021C8667900D49A95 /* Servies */ = {
+		ED413C8021C8667900D49A95 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				ED413C8121C8668A00D49A95 /* MenuService.swift */,
 			);
-			path = Servies;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		ED5D17BD21C60048001C6664 = {
@@ -97,7 +97,7 @@
 				ED7194FD21C739E10086BE7E /* Controller */,
 				ED7194FC21C739D60086BE7E /* View */,
 				ED7194F921C739510086BE7E /* Model */,
-				ED413C8021C8667900D49A95 /* Servies */,
+				ED413C8021C8667900D49A95 /* Services */,
 				ED5D17F921C6018A001C6664 /* GoogleService-Info.plist */,
 				ED5D17C921C60049001C6664 /* AppDelegate.swift */,
 				ED5D17D021C6004B001C6664 /* Assets.xcassets */,
@@ -211,7 +211,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NUDining/Pods-NUDining-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -219,7 +221,9 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

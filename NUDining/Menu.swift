@@ -23,13 +23,13 @@ enum TimeOfDay {
 struct Menu {
     let location: Location
     let locationID: String
-    let time: TimeOfDay
+    let timeOfDay: TimeOfDay
     let mealStations: [MealStation]
     
-    init(location: Location, time: TimeOfDay) {
+    init(location: Location, timeOfDay: TimeOfDay, mealStations: [MealStation]) {
         self.location = location
-        self.time = time
+        self.timeOfDay = timeOfDay
         self.locationID = MenuService.getLocationID(from: location)
-        self.mealStations = []
+        self.mealStations = mealStations
     }
 }
