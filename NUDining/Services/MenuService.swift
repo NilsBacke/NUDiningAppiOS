@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FirebaseDatabase
 import Alamofire
 import SwiftyJSON
 
@@ -22,7 +21,7 @@ struct MenuService {
     
     // get today's date in String format: YYYY-MM-DD
     private static var todaysDate: String {
-        if (DEBUG) {
+        if DEBUG == true {
             return "2018-12-14"
         }
         let dateFormatter = DateFormatter()
@@ -61,38 +60,46 @@ struct MenuService {
     // return every menu for every location and time of day
     private static func getAllMenus(completion: @escaping (MenuDict) -> Void) {
         var menus = MenuDict()
-        let group = DispatchGroup()
+        let group1 = DispatchGroup()
         for loc in locations {
             // dispatch groups are used to synchronously perform the API fetch
-            group.enter()
+            group1.enter()
             getJSONFromURL(urlPath: getURL(location: loc, date: todaysDate)) { jsonData in
                 if let json = jsonData { // if there is data
+                    var dict: [TimeOfDay : Menu] = [:]
                     for timeOfDay in timesOfDay {
-                        let menu = MenuService.getMenu(json: json, location: loc, timeOfDay: timeOfDay)
+                        let menu = getMenu(json: json, location: loc, timeOfDay: timeOfDay)
                         if let menuObj = menu { // if the data is properly formed (the location is open at the specified time of day)
-                            menus[loc] = [timeOfDay : menuObj]
+                            dict[timeOfDay] = menuObj
                         }
                     }
+                    menus[loc] = dict
                 }
-                group.leave()
+                group1.leave()
             }
         }
-        group.notify(queue: .main) {
+        group1.notify(queue: .main) {
             // set the local storage variable for future use
+            print("self.menus \(menus)")
             self.menus = menus
             return completion(menus)
         }
     }
     
     // returns the menu for a specific location and time of day
-    static func getMenu(json: JSON, location: Location, timeOfDay: TimeOfDay) -> Menu? {
+    private static func getMenu(json: JSON, location: Location, timeOfDay: TimeOfDay) -> Menu? {
         let timeOfDayString: String = getTimeOfDayString(from: timeOfDay)
         
         let periodsArray: [JSON] = json["menu"]["periods"].arrayValue
         
+        // get rid of for loop and use indexing of a dictionary
         for period in periodsArray {
             let timeOfDayName: String = period["name"].stringValue
             if timeOfDayName == timeOfDayString {
+                if location == .IV {
+                    print("timeOfDayName \(timeOfDayName)")
+                    print("timeOfDayString \(timeOfDayString)")
+                }
                 let categories: [JSON] = period["categories"].arrayValue
                 var mealStations: [MealStation] = []
                 for category in categories {
@@ -114,7 +121,8 @@ struct MenuService {
     
     // returns the JSON data from the given url
     // uses Alamofire
-    static func getJSONFromURL(urlPath: String, completion: @escaping (JSON?) -> Void) {
+    private static func getJSONFromURL(urlPath: String, completion: @escaping (JSON?) -> Void) {
+        print("url \(urlPath)")
         Alamofire.request(urlPath).responseJSON { response in
             if response.result.isSuccess {
                 print("Success")

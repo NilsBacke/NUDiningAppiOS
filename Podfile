@@ -7,7 +7,8 @@ target 'NUDining' do
 
   # Pods for NUDining
   pod 'Firebase/Core'
-  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
   pod 'Alamofire'
   pod 'SwiftyJSON'
 
