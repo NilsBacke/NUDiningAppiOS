@@ -12,6 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 const functions = require("firebase-functions");
+const fillFood = require("./fillFood.js");
+
+fillFood.getFoodsFromAPI();
+
+exports.fillFood = functions.https.onRequest(async (req, res) => {
+  return await fillFood.getFoodsFromAPI();
+});
 
 exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(message => {
   console.log("This job is run every 24 hours!");

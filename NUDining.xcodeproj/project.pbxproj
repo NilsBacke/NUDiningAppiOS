@@ -21,7 +21,8 @@
 		ED94D3C821CF1ECE00461983 /* IVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C721CF1ECE00461983 /* IVViewController.swift */; };
 		ED94D3CA21CF1EE900461983 /* StwestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C921CF1EE900461983 /* StwestViewController.swift */; };
 		ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */; };
-		ED94D3CE21CF22F100461983 /* PreferredFoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CD21CF22F100461983 /* PreferredFoodService.swift */; };
+		ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CD21CF22F100461983 /* FoodService.swift */; };
+		ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +44,8 @@
 		ED94D3C721CF1ECE00461983 /* IVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVViewController.swift; sourceTree = "<group>"; };
 		ED94D3C921CF1EE900461983 /* StwestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StwestViewController.swift; sourceTree = "<group>"; };
 		ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		ED94D3CD21CF22F100461983 /* PreferredFoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredFoodService.swift; sourceTree = "<group>"; };
+		ED94D3CD21CF22F100461983 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
+		ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPreferredFoodViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				ED413C8121C8668A00D49A95 /* MenuService.swift */,
-				ED94D3CD21CF22F100461983 /* PreferredFoodService.swift */,
+				ED94D3CD21CF22F100461983 /* FoodService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -143,6 +145,7 @@
 				ED94D3C721CF1ECE00461983 /* IVViewController.swift */,
 				ED94D3C921CF1EE900461983 /* StwestViewController.swift */,
 				ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */,
+				ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -291,9 +294,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */,
-				ED94D3CE21CF22F100461983 /* PreferredFoodService.swift in Sources */,
+				ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */,
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
+				ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */,
 				ED94D3C821CF1ECE00461983 /* IVViewController.swift in Sources */,
 				ED94D3C221CF195200461983 /* MainTabBarController.swift in Sources */,
 				ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */,
