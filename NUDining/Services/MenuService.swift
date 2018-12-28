@@ -80,7 +80,6 @@ struct MenuService {
         }
         group1.notify(queue: .main) {
             // set the local storage variable for future use
-            print("self.menus \(menus)")
             self.menus = menus
             return completion(menus)
         }
@@ -96,10 +95,6 @@ struct MenuService {
         for period in periodsArray {
             let timeOfDayName: String = period["name"].stringValue
             if timeOfDayName == timeOfDayString {
-                if location == .IV {
-                    print("timeOfDayName \(timeOfDayName)")
-                    print("timeOfDayString \(timeOfDayString)")
-                }
                 let categories: [JSON] = period["categories"].arrayValue
                 var mealStations: [MealStation] = []
                 for category in categories {
@@ -122,7 +117,6 @@ struct MenuService {
     // returns the JSON data from the given url
     // uses Alamofire
     private static func getJSONFromURL(urlPath: String, completion: @escaping (JSON?) -> Void) {
-        print("url \(urlPath)")
         Alamofire.request(urlPath).responseJSON { response in
             if response.result.isSuccess {
                 print("Success")

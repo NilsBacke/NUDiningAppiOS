@@ -37,4 +37,16 @@ class NotificationsViewController : UIViewController, UITableViewDataSource, UIT
         cell.textLabel?.text = preferredFoods[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            let removedFood = preferredFoods.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            FoodService.removePreferredFood(removedFood) { bool in
+                if (!bool) {
+                    print("could not revome food from database")
+                }
+            }
+        }
+    }
 }

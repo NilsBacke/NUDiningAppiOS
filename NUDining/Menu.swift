@@ -26,6 +26,14 @@ struct Menu {
     let timeOfDay: TimeOfDay
     let mealStations: [MealStation]
     
+    var numOfItems: Int {
+        var sum = 0
+        for station in mealStations {
+            sum += station.items.count
+        }
+        return sum
+    }
+    
     init(location: Location, timeOfDay: TimeOfDay, mealStations: [MealStation]) {
         self.location = location
         self.timeOfDay = timeOfDay

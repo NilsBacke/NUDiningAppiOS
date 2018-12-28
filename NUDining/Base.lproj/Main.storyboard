@@ -33,14 +33,57 @@
                     <view key="view" contentMode="scaleToFill" id="deN-mV-yvH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bar-fg-d8f">
+                                <rect key="frame" x="74" y="58" width="231" height="29"/>
+                                <segments>
+                                    <segment title="Breakfast"/>
+                                    <segment title="Lunch"/>
+                                    <segment title="Dinner"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="hgb-gp-mKx" eventType="valueChanged" id="Ujq-AL-kph"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hh-Py-orv">
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="635" id="ltN-yA-XDL"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="9ht-B4-EUj">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ht-B4-EUj" id="DyV-5Y-mmg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="bar-fg-d8f" secondAttribute="trailing" constant="70" id="3ou-lv-GgN"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="CmH-3R-fa7"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="Hjg-2S-kpz"/>
+                            <constraint firstItem="bar-fg-d8f" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="74" id="Kbx-8m-KlF"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="MLi-5Z-iE3"/>
+                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="1hh-Py-orv" secondAttribute="trailing" id="kSt-gk-Rvm"/>
+                            <constraint firstItem="bar-fg-d8f" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="14" id="n3t-kh-AZz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="h0L-Kb-P5Q"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Steast" id="uju-zu-OoX"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="bar-fg-d8f" id="eVL-9a-dBn"/>
+                        <outlet property="tableView" destination="1hh-Py-orv" id="3Al-jw-1B3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d66-67-XaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1364" y="-1756"/>
+            <point key="canvasLocation" x="-1364" y="-1756.4039408866995"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="f4U-p1-7xU">

@@ -49,6 +49,17 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
         tableView.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        FoodService.addPreferredFood(foods[indexPath.row]) { bool in
+            if bool {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                print("could not add preferred food")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foods.count
     }

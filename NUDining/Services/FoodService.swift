@@ -65,7 +65,7 @@ struct FoodService {
         }
     }
     
-    public static func removeReferredFood(_ food: String, completion: @escaping (Bool) -> Void) {
+    public static func removePreferredFood(_ food: String, completion: @escaping (Bool) -> Void) {
         getDeviceID { id in
             guard let deviceID = id else {
                 fatalError("device ID is nil")

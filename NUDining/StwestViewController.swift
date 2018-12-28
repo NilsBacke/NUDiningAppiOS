@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class StwestViewController : UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
