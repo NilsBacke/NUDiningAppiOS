@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5CADB974E3D906FA57276B86 /* Pods_NUDining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E00C82AC85579D536DD80EB /* Pods_NUDining.framework */; };
+		ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0BFC8E21D7C6EE0009651C /* ImageService.swift */; };
 		ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C7E21C8649200D49A95 /* MealStation.swift */; };
 		ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C8121C8668A00D49A95 /* MenuService.swift */; };
 		ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D17C921C60049001C6664 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		1E00C82AC85579D536DD80EB /* Pods_NUDining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NUDining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AA1110F902336D714C4FC2 /* Pods-NUDining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUDining.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUDining/Pods-NUDining.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1260E576AF70964B794D1D /* Pods-NUDining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUDining.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUDining/Pods-NUDining.release.xcconfig"; sourceTree = "<group>"; };
+		ED0BFC8E21D7C6EE0009651C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		ED413C7E21C8649200D49A95 /* MealStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealStation.swift; sourceTree = "<group>"; };
 		ED413C8121C8668A00D49A95 /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
 		ED5D17C621C60049001C6664 /* NUDining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NUDining.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 			children = (
 				ED413C8121C8668A00D49A95 /* MenuService.swift */,
 				ED94D3CD21CF22F100461983 /* FoodService.swift */,
+				ED0BFC8E21D7C6EE0009651C /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
 				ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */,
+				ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */,
 				ED94D3C821CF1ECE00461983 /* IVViewController.swift in Sources */,
 				ED94D3C221CF195200461983 /* MainTabBarController.swift in Sources */,
 				ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */,

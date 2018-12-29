@@ -43,8 +43,6 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
             group.leave()
         }
         group.notify(queue: .main) {
-            print("breakfast: \(self.breakfast?.mealStations.map{$0.title})")
-            print("lunch: \(self.lunch?.mealStations.map{$0.title})")
             self.indexChanged("")
         }
     }
@@ -70,7 +68,16 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        cell.textLabel?.text = menu?.mealStations[indexPath.row].title
+        let title = menu?.mealStations[indexPath.row].title
+        cell.textLabel?.text = title
+        if let _title = title {
+            ImageService.getImageFromKeyword(q: _title) { img in
+                if let _img = img {
+                    cell.backgroundView = UIImageView(image: _img)
+                    cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
+                }
+            }
+        }
         return cell
     }
 }
