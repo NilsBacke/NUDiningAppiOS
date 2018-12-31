@@ -20,7 +20,10 @@ struct ImageService {
         let start = 1
         let imgSize = "medium"
         let searchType = "image"
-        let url = "https://www.googleapis.com/customsearch/v1?q=\(q)&key=\(key)&cx=\(cx)&num=\(num)&start=\(start)&imgSize=\(imgSize)&searchType=\(searchType)"
+        
+        let query = q.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        let url = "https://www.googleapis.com/customsearch/v1?q=\(query)&key=\(key)&cx=\(cx)&num=\(num)&start=\(start)&imgSize=\(imgSize)&searchType=\(searchType)"
         
         Alamofire.request(url).responseJSON { response in
             if response.result.isSuccess {

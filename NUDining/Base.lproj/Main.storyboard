@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bar-fg-d8f">
-                                <rect key="frame" x="74" y="58" width="231" height="29"/>
+                                <rect key="frame" x="72" y="58" width="231" height="29"/>
                                 <segments>
                                     <segment title="Breakfast"/>
                                     <segment title="Lunch"/>
@@ -46,11 +46,8 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hh-Py-orv">
-                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="718"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="635" id="ltN-yA-XDL"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="9ht-B4-EUj">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -65,13 +62,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="bar-fg-d8f" secondAttribute="trailing" constant="70" id="3ou-lv-GgN"/>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="CmH-3R-fa7"/>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="Hjg-2S-kpz"/>
-                            <constraint firstItem="bar-fg-d8f" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="74" id="Kbx-8m-KlF"/>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="MLi-5Z-iE3"/>
-                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="1hh-Py-orv" secondAttribute="trailing" id="kSt-gk-Rvm"/>
-                            <constraint firstItem="bar-fg-d8f" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="14" id="n3t-kh-AZz"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="5M7-BX-gB7"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="UmR-jn-xUl"/>
+                            <constraint firstItem="bar-fg-d8f" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="14" id="YAP-d5-0p2"/>
+                            <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="aBh-UW-3og"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="izh-E0-pfP"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="mbv-E0-4Nv"/>
+                            <constraint firstItem="bar-fg-d8f" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="72" id="rfE-Fj-cui"/>
+                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="bar-fg-d8f" secondAttribute="trailing" constant="72" id="wn7-hD-fXQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h0L-Kb-P5Q"/>
                     </view>

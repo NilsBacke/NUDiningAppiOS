@@ -71,12 +71,12 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
         let title = menu?.mealStations[indexPath.row].title
         cell.textLabel?.text = title
         if let _title = title {
-            ImageService.getImageFromKeyword(q: _title) { img in
-                if let _img = img {
-                    cell.backgroundView = UIImageView(image: _img)
-                    cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
-                }
-            }
+//            ImageService.getImageFromKeyword(q: _title) { img in
+//                if let _img = img {
+//                    cell.backgroundView = UIImageView(image: _img)
+//                    cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
+//                }
+//            }
         }
         return cell
     }
