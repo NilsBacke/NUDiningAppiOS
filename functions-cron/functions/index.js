@@ -119,7 +119,11 @@ function cron(message, context) {
     var db = admin.firestore();
     db.settings({timestampsInSnapshots: true}); // to suppress warning
 
-    var date = "2018-12-17"; // TODO: Get today's date
+    var date = new Date();
+    var yr = date.getFullYear();
+    var mnth = date.getMonth();
+    var day = date.getDate();
+
     getAllLocations(nu_site_id)
     .then((locations) => {
       console.log(locations.map((loc) => loc.name));
@@ -138,7 +142,7 @@ function cron(message, context) {
                 foodPrefs.forEach((foodPref) => {
                   var matches = foods_from_menu.filter((food_from_menu) => foodPref == food_from_menu.name);
                   matches.forEach((match) => {
-                    console.log("sending message"); // SEND MESSAGE HERE
+                    console.log("sending message to device", doc.data().deviceID);
                     sendMessageToDevice(doc.data().deviceID, "msg");
                   });
                   console.log("CHECKING at", location.name);
@@ -164,7 +168,6 @@ function cron(message, context) {
 }
 
 function sendMessageToDevice(deviceID, msg) {
-  // Implement me!
   var message = {
     data: msg,
     token: deviceID
@@ -206,15 +209,10 @@ function getAllFoods(site_id, date) {
       resolve(foods);
     })
     .catch((err) => {
-      resolve('error'); //todo, reject promise here maybe
+      resolve('error');
     });
   });
-
-  //getAllFoodsAtLocation(site_id, location.id, location.name, date).
 }
-
-// Note: flatten 2d array:
-// [].concat.apply([], arrays)
 
 function getAllFoodsAtLocation(site_id, location_id, location_name, date) {
   return new Promise(function(resolve, reject) {
