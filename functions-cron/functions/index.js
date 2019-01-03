@@ -132,12 +132,13 @@ function cron(message, context) {
     var yr = date.getFullYear();
     var mnth = date.getMonth();
     var day = date.getDate();
-
+    var date_string = yr + "-" + ("00" + mnth).substr(-2,2) + "-" + ("00" + day).substr(-2,2);
+    
     getAllLocations(nu_site_id)
     .then((locations) => {
       console.log(locations.map((loc) => loc.name));
       locations.forEach((location) => {
-        getAllFoodsAtLocation(nu_site_id, location.id, location.name, date)
+        getAllFoodsAtLocation(nu_site_id, location.id, location.name, date_string)
         .then((foods_from_menu) => {
           db.collection('devices')
           .get()
