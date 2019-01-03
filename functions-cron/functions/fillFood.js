@@ -9,7 +9,7 @@ const admin = require("firebase-admin");
 const axios = require("axios");
 admin.initializeApp({
   credential: admin.credential.applicationDefault()
-});
+}, "fillFood_app");
 
 const locations = [
   "5b9bd1c41178e90d4774210e",

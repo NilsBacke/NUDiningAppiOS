@@ -116,7 +116,7 @@ const axios = require("axios");
 
 const app = admin.initializeApp({
   credential: admin.credential.applicationDefault()
-});
+}, "messaging_app");
 
 var nu_site_id = "5751fd2b90975b60e048929a";
 
