@@ -3,43 +3,58 @@
 //
 // Author: Sam Xifaras
 
-const admin = require("firebase-admin");
+const DRY = true;
+const DEBUG = true;
+
 const axios = require("axios");
 
-const app = admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-}, "messaging_app");
+const {
+  db,
+} = require('./admin.js');
 
-var nu_site_id = "5751fd2b90975b60e048929a";
+module.exports = {
+  execute: cronjob
+};
 
 function cronjob(message, context) {
-  try {
+  const nu_site_id = "5751fd2b90975b60e048929a";
+  //try {
     console.log("This job is run every 24 hours!");
-    var db = admin.firestore();
     db.settings({timestampsInSnapshots: true}); // to suppress warning
 
     var date = new Date();
     var yr = date.getFullYear();
-    var mnth = date.getMonth();
+    var mnth = date.getMonth() + 1;
     var day = date.getDate();
     var date_string = yr + "-" + ("00" + mnth).substr(-2,2) + "-" + ("00" + day).substr(-2,2);
+    if (DEBUG) console.log("date_string =", date_string);
 
-    getAllLocations(nu_site_id)
-    .then((locations) => {
-      console.log(locations.map((loc) => loc.name));
-      locations.forEach((location) => {
-        getAllFoodsAtLocation(nu_site_id, location.id, location.name, date_string)
-        .then((foods_from_menu) => {
-          db.collection('devices')
-          .get()
-          .then((snapshot) => {
+    // Get devices
+    db.collection('devices')
+    .get()
+    .then((snapshot) => {
+
+      // Get all dining locations
+      getAllLocations(nu_site_id)
+      .then((locations) => {
+        console.log(locations.map((loc) => loc.name));
+        
+        locations.forEach((location) => {
+
+          // Get all foods at each location
+          getAllFoodsAtLocation(nu_site_id, location.id, location.name, date_string)
+          .then((foods_from_menu) => {
             snapshot.forEach((doc) => {
+
+              // Get preferredFoods for each device
               db.collection('devices').doc(doc.id).collection('preferredFoods')
               .get()
               .then((preferredFoods_snap) => {
                 var foodPrefs = preferredFoods_snap.docs
                       .map((preferredFood_entry) => preferredFood_entry.data().food);
                 foodPrefs.forEach((foodPref) => {
+                  // Check for matches
+                  if (DEBUG) console.log("Checking if", foodPref, "is being served at", location.name);
                   var matches = foods_from_menu.filter((food_from_menu) => foodPref == food_from_menu.name);
                   matches.forEach((match) => {
                     console.log("sending message to device", doc.data().deviceID);
@@ -51,36 +66,41 @@ function cronjob(message, context) {
               .catch((err) => {
                 console.log("Error", err);
               });
+
             });
-          })
-          .catch((err) => {
-            console.log('Error getting documents', err);
           });
         });
-      });
+      })
+
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
     });
 
     return true;
-  }
-  catch (err) {
-
-  }
+  //}
+  //catch (err) {
+  //  console.log("A fatal error occured and the job could not finish execution");
+  //  return false;
+  //}
 }
 
 function sendMessageToDevice(deviceID, msg) {
-  var message = {
-    data: msg,
-    token: deviceID
-  }
+  if (!DRY) {
+    var message = {
+      data: msg,
+      token: deviceID
+    }
 
-  admin.messaging().send(message)
-  .then((response) => {
-    // Response is a message ID string.
-    console.log('Successfully sent message:', response);
-  })
-  .catch((error) => {
-    console.log('Error sending message:', error);
-  });
+    admin.messaging().send(message)
+    .then((response) => {
+      // Response is a message ID string.
+      console.log('Successfully sent message:', response);
+    })
+    .catch((error) => {
+      console.log('Error sending message:', error);
+    });
+  }
 }
 
 function getAllLocations(site_id) {

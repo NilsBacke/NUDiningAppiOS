@@ -25,4 +25,4 @@ exports.fillFood = functions.https.onRequest(async (req, res) => {
   return await fillFood.getFoodsFromAPI();
 });
 
-exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(messaging.cronjob);
+exports.daily_job = functions.pubsub.topic("daily-tick").onPublish((msg, context) => { return messaging.execute(msg, context); });
