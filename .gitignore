@@ -1,5 +1,5 @@
 .DS_Store
-Pods
+Pods/
 Podfile.lock
 NUDining.xcworkspace
 
