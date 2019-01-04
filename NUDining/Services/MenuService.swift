@@ -99,13 +99,17 @@ struct MenuService {
                 var mealStations: [MealStation] = []
                 for category in categories {
                     let name: String = category["name"].stringValue
+                    print("name: \(name)")
                     let itemList: [JSON] = category["items"].arrayValue
-                    var items: [String : String] = [:]
+                    var items: [(String, String)] = []
                     for item in itemList {
+                        print("item")
                         let name: String = item["name"].stringValue
                         let ingredients: String = item["ingredients"].stringValue
-                        items[name] = ingredients
+                        print("ingredients: \(ingredients)")
+                        items.append((name, ingredients))
                     }
+                    
                     mealStations.append(MealStation(title: name, items: items))
                 }
                 return Menu(location: location, timeOfDay: timeOfDay, mealStations: mealStations)

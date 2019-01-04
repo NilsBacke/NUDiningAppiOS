@@ -16,6 +16,8 @@
 		ED5D17D121C6004B001C6664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5D17D021C6004B001C6664 /* Assets.xcassets */; };
 		ED5D17D421C6004B001C6664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED5D17D221C6004B001C6664 /* LaunchScreen.storyboard */; };
 		ED5D17FA21C6018B001C6664 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED5D17F921C6018A001C6664 /* GoogleService-Info.plist */; };
+		ED70EA2321DA773400D272CA /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED70EA2221DA773400D272CA /* CustomTableViewCell.swift */; };
+		ED70EA2521DB2CA400D272CA /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */; };
 		ED7194FB21C739800086BE7E /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7194FA21C739800086BE7E /* Menu.swift */; };
 		ED94D3C221CF195200461983 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C121CF195200461983 /* MainTabBarController.swift */; };
 		ED94D3C621CF1EC100461983 /* SteastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C521CF1EC100461983 /* SteastViewController.swift */; };
@@ -40,6 +42,8 @@
 		ED5D17D321C6004B001C6664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED5D17D521C6004B001C6664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED5D17F921C6018A001C6664 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ED70EA2221DA773400D272CA /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		ED7194FA21C739800086BE7E /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		ED94D3C121CF195200461983 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		ED94D3C521CF1EC100461983 /* SteastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteastViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				ED5D17CD21C60049001C6664 /* Main.storyboard */,
+				ED70EA2221DA773400D272CA /* CustomTableViewCell.swift */,
+				ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */,
+				ED70EA2521DB2CA400D272CA /* CollectionViewCell.swift in Sources */,
 				ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */,
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
@@ -310,6 +317,7 @@
 				ED94D3C621CF1EC100461983 /* SteastViewController.swift in Sources */,
 				ED94D3CA21CF1EE900461983 /* StwestViewController.swift in Sources */,
 				ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */,
+				ED70EA2321DA773400D272CA /* CustomTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
