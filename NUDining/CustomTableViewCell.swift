@@ -32,10 +32,8 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         
         cell.nameLabel.text = mealStation?.items[indexPath.item].name
         cell.ingredientsLabel.text = mealStation?.items[indexPath.item].ingredients
-//        cell.backgroundColor = UIColor.red
         ImageService.getImageFromKeyword(q: (mealStation?.items[indexPath.item].name)!) { image in
             cell.backgroundView = UIImageView(image: image)
-            print("image: \(image)")
         }
         
         return cell
