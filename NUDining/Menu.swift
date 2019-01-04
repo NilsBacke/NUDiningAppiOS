@@ -24,7 +24,7 @@ struct Menu {
     let location: Location
     let locationID: String
     let timeOfDay: TimeOfDay
-    let mealStations: [MealStation]
+    var mealStations: [MealStation]
     
     var numOfItems: Int {
         var sum = 0

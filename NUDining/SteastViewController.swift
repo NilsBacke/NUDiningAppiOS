@@ -11,10 +11,10 @@ import UIKit
 
 class SteastViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var menu: Menu?
-    var breakfast: Menu?
-    var lunch: Menu?
-    var dinner: Menu?
+    var mealStations: [MealStation]?
+    var breakfastMealStations: [MealStation]?
+    var lunchMealStations: [MealStation]?
+    var dinnerMealStations: [MealStation]?
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -29,35 +29,32 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
         let group = DispatchGroup()
         group.enter()
         MenuService.getSpecificMenu(location: .Steast, timeOfDay: .Breakfast) { menu in
-            self.breakfast = menu
+            self.breakfastMealStations = menu?.mealStations
             group.leave()
         }
         group.enter()
         MenuService.getSpecificMenu(location: .Steast, timeOfDay: .Lunch) { menu in
-            self.lunch = menu
+            self.lunchMealStations = menu?.mealStations
             group.leave()
         }
         group.enter()
         MenuService.getSpecificMenu(location: .Steast, timeOfDay: .Dinner) { menu in
-            self.dinner = menu
+            self.dinnerMealStations = menu?.mealStations
             group.leave()
         }
         group.notify(queue: .main) {
             self.indexChanged("")
-            for mealstation in self.menu!.mealStations {
-                print("item: \(mealstation.items[0].name)")
-            }
         }
     }
     
     @IBAction func indexChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            self.menu = self.breakfast
+            self.mealStations = self.breakfastMealStations?.sorted {$0.title < $1.title}
         case 1:
-            self.menu = self.lunch
+            self.mealStations = self.lunchMealStations?.sorted {$0.title < $1.title}
         case 2:
-            self.menu = self.dinner
+            self.mealStations = self.dinnerMealStations?.sorted {$0.title < $1.title}
         default:
             break
         }
@@ -65,11 +62,11 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return menu?.mealStations[section].title
+        return mealStations?[section].title
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return menu?.mealStations.count ?? 0
+        return mealStations?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,7 +75,7 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath) as! CustomTableViewCell
-        cell.mealStation = (menu?.mealStations[indexPath.section])!
+        cell.mealStation = mealStations![indexPath.section]
         return cell
     }
     
