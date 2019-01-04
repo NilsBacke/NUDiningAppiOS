@@ -15,11 +15,13 @@ import ChameleonFramework
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    public static let navBarColor = UIColor(red: (247/255), green: (247/255), blue: (247/255), alpha: 1)
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        Chameleon.setGlobalThemeUsingPrimaryColor(FlatRedDark(), with: UIContentStyle.dark)
         return true
     }
 

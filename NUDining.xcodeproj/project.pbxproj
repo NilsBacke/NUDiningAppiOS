@@ -26,6 +26,7 @@
 		ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */; };
 		ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CD21CF22F100461983 /* FoodService.swift */; };
 		ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */; };
+		EDCD888F21E0149C005EA291 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD888E21E0149C005EA291 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		ED94D3CD21CF22F100461983 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPreferredFoodViewController.swift; sourceTree = "<group>"; };
+		EDCD888E21E0149C005EA291 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		ED5D17C821C60049001C6664 /* NUDining */ = {
 			isa = PBXGroup;
 			children = (
+				EDCD888D21E0147E005EA291 /* Extensions */,
 				ED7194FD21C739E10086BE7E /* Controller */,
 				ED7194FC21C739D60086BE7E /* View */,
 				ED7194F921C739510086BE7E /* Model */,
@@ -157,6 +160,14 @@
 				ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		EDCD888D21E0147E005EA291 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDCD888E21E0149C005EA291 /* Colors.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */,
+				EDCD888F21E0149C005EA291 /* Colors.swift in Sources */,
 				ED70EA2521DB2CA400D272CA /* CollectionViewCell.swift in Sources */,
 				ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */,
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
