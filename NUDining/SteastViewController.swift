@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SteastViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SteastViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var mealStations: [MealStation]?
     var breakfastMealStations: [MealStation]?
@@ -19,10 +19,20 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
+    lazy var searchBar: UISearchBar = UISearchBar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        navigationItem.title = "Stetson East"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.searchBar.barTintColor = AppDelegate.navBarColor
+        navigationController?.navigationBar.barTintColor = AppDelegate.navBarColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -15,7 +15,7 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     
     var foods: [String] = []
     
-    lazy var searchBar:UISearchBar = UISearchBar()
+    lazy var searchBar: UISearchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()

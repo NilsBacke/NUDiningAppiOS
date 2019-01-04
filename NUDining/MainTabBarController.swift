@@ -15,6 +15,7 @@ class MainTabBarController : UITabBarController {
         super.viewDidLoad()
         self.registerForNotifications()
         FoodService.saveDeviceID()
+        self.tabBar.tintColor = UIColor.NURed
     }
     
     private func registerForNotifications() {

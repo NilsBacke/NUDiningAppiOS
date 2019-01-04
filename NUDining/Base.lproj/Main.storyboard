@@ -20,11 +20,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xM1-Iy-g6f"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="IV" id="Ceb-SW-lxu"/>
+                    <navigationItem key="navigationItem" id="PbB-9B-JqG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCD-ZA-dij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1364" y="-1017"/>
+            <point key="canvasLocation" x="-421.60000000000002" y="-1017.4876847290641"/>
         </scene>
         <!--Steast-->
         <scene sceneID="47t-5d-Sf1">
@@ -34,19 +34,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bar-fg-d8f">
-                                <rect key="frame" x="72" y="58" width="231" height="29"/>
-                                <segments>
-                                    <segment title="Breakfast"/>
-                                    <segment title="Lunch"/>
-                                    <segment title="Dinner"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="hgb-gp-mKx" eventType="valueChanged" id="Ujq-AL-kph"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hh-Py-orv">
-                                <rect key="frame" x="0.0" y="94" width="375" height="718"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="676"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" rowHeight="120" id="9ht-B4-EUj" customClass="CustomTableViewCell" customModule="NUDining" customModuleProvider="target">
@@ -131,29 +120,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tvq-jj-kuF">
+                                <rect key="frame" x="60" y="98" width="255" height="29"/>
+                                <segments>
+                                    <segment title="Breakfast"/>
+                                    <segment title="Lunch"/>
+                                    <segment title="Dinner"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="hgb-gp-mKx" eventType="valueChanged" id="1W8-ki-Hx7"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="5M7-BX-gB7"/>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="bar-fg-d8f" secondAttribute="bottom" constant="8" id="UmR-jn-xUl"/>
-                            <constraint firstItem="bar-fg-d8f" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="14" id="YAP-d5-0p2"/>
+                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="10" id="1fV-BG-NCi"/>
+                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="Tvq-jj-kuF" secondAttribute="trailing" constant="60" id="1jf-Sm-3qP"/>
+                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="60" id="GNG-26-MwA"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="Tvq-jj-kuF" secondAttribute="bottom" constant="10" id="Gsg-wa-bOF"/>
                             <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="aBh-UW-3og"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="izh-E0-pfP"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="mbv-E0-4Nv"/>
-                            <constraint firstItem="bar-fg-d8f" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="72" id="rfE-Fj-cui"/>
-                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="bar-fg-d8f" secondAttribute="trailing" constant="72" id="wn7-hD-fXQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h0L-Kb-P5Q"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Steast" id="uju-zu-OoX"/>
+                    <navigationItem key="navigationItem" id="OOt-Rt-diH"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="bar-fg-d8f" id="eVL-9a-dBn"/>
+                        <outlet property="segmentedControl" destination="Tvq-jj-kuF" id="mVN-2O-fUN"/>
                         <outlet property="tableView" destination="1hh-Py-orv" id="3Al-jw-1B3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d66-67-XaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1364" y="-1756.4039408866995"/>
+            <point key="canvasLocation" x="-421.60000000000002" y="-1756.4039408866995"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="f4U-p1-7xU">
@@ -165,9 +164,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="hgb-gp-mKx" kind="relationship" relationship="viewControllers" id="esi-dH-Kce"/>
-                        <segue destination="ZhZ-wO-D3q" kind="relationship" relationship="viewControllers" id="OUR-m8-i8t"/>
-                        <segue destination="TYz-yg-tf3" kind="relationship" relationship="viewControllers" id="gxc-np-Rxk"/>
+                        <segue destination="Ew7-LN-Rit" kind="relationship" relationship="viewControllers" id="esi-dH-Kce"/>
+                        <segue destination="0ce-TF-KtA" kind="relationship" relationship="viewControllers" id="OUR-m8-i8t"/>
+                        <segue destination="JsO-gt-g9r" kind="relationship" relationship="viewControllers" id="gxc-np-Rxk"/>
                         <segue destination="5g0-ue-fjP" kind="relationship" relationship="viewControllers" id="E9x-0n-csK"/>
                     </connections>
                 </tabBarController>
@@ -185,11 +184,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OP7-K4-uRz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stwest" id="kNK-f1-hef"/>
+                    <navigationItem key="navigationItem" id="2xH-nb-D8J"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSq-zY-Zk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1364" y="-282"/>
+            <point key="canvasLocation" x="-421.60000000000002" y="-282.26600985221677"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="VGJ-kS-Cgc">
@@ -297,5 +296,63 @@
             </objects>
             <point key="canvasLocation" x="-1364" y="441.87192118226602"/>
         </scene>
+        <!--Steast-->
+        <scene sceneID="K7H-RR-qNF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ew7-LN-Rit" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Steast" id="uju-zu-OoX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rfx-9O-PuC">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hgb-gp-mKx" kind="relationship" relationship="rootViewController" id="Uqd-zU-Nkz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eNM-Vz-iU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1364" y="-1756.4039408866995"/>
+        </scene>
+        <!--IV-->
+        <scene sceneID="mPo-yb-WbE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0ce-TF-KtA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="IV" id="Ceb-SW-lxu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mjv-Qh-THE">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZhZ-wO-D3q" kind="relationship" relationship="rootViewController" id="n6U-po-7Ba"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2u-qp-l0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1364" y="-1017.4876847290641"/>
+        </scene>
+        <!--Stwest-->
+        <scene sceneID="n3z-zW-MYX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JsO-gt-g9r" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Stwest" id="kNK-f1-hef"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U3U-Dg-qzK">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TYz-yg-tf3" kind="relationship" relationship="rootViewController" id="Zox-0g-zti"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aw4-Lm-O3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1364" y="-282.26600985221677"/>
+        </scene>
     </scenes>
+    <color key="tintColor" red="0.75294117647058822" green="0.22352941176470587" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
 </document>
