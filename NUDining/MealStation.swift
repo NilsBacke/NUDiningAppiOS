@@ -10,9 +10,9 @@ import Foundation
 
 struct MealStation {
     let title: String
-    let items: [String : String] // [Name : Ingredients]
+    let items: [(name: String, ingredients: String)] // (Name, Ingredients)
     
-    init(title: String, items: [String : String]) {
+    init(title: String, items: [(String, String)]) {
         self.title = title
         self.items = items
     }

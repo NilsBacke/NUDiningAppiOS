@@ -44,6 +44,9 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
         }
         group.notify(queue: .main) {
             self.indexChanged("")
+            for mealstation in self.menu!.mealStations {
+                print("item: \(mealstation.items[0].name)")
+            }
         }
     }
     
@@ -61,23 +64,25 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
         self.tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // change
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return menu?.mealStations[section].title
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return menu?.mealStations.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        let title = menu?.mealStations[indexPath.row].title
-        cell.textLabel?.text = title
-        if let _title = title {
-//            ImageService.getImageFromKeyword(q: _title) { img in
-//                if let _img = img {
-//                    cell.backgroundView = UIImageView(image: _img)
-//                    cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
-//                }
-//            }
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath) as! CustomTableViewCell
+        cell.mealStation = (menu?.mealStations[indexPath.section])!
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120.0
     }
 }

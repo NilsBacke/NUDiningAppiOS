@@ -13,7 +13,12 @@ import SwiftyJSON
 struct ImageService {
     
     public static func getImageFromKeyword(q: String, completion: @escaping (UIImage?) -> Void) {
-        print("q: \(q)")
+        var query = q
+        
+        if query == "Orange" {
+            query = "Orange Fruit"
+        }
+        
         let key = "AIzaSyDJbKdxDComCtL6llz1Nyu2IUpy1YShiGE"
         let cx = "005953852519046923142%3Azj49gwvnpa8"
         let num = 1
@@ -21,9 +26,9 @@ struct ImageService {
         let imgSize = "medium"
         let searchType = "image"
         
-        let query = q.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let encodedQuery = q.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
-        let url = "https://www.googleapis.com/customsearch/v1?q=\(query)&key=\(key)&cx=\(cx)&num=\(num)&start=\(start)&imgSize=\(imgSize)&searchType=\(searchType)"
+        let url = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&key=\(key)&cx=\(cx)&num=\(num)&start=\(start)&imgSize=\(imgSize)&searchType=\(searchType)"
         
         Alamofire.request(url).responseJSON { response in
             if response.result.isSuccess {
