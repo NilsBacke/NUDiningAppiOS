@@ -5,11 +5,11 @@
 //  response.send("Hello from Firebase!");
 // });
 
-const admin = require("firebase-admin");
+const {
+  db,
+} = require('./admin.js');
+
 const axios = require("axios");
-admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-});
 
 const locations = [
   "5b9bd1c41178e90d4774210e",
@@ -77,7 +77,7 @@ function getListOfFoods(json) {
 }
 
 async function uploadToFirestore(foods) {
-  var db = admin.firestore();
+  // var db = admin.firestore(); -- unnecessary
   var ref = db.collection("foods");
   for (var i = 0; i < foods.length; i++) {
     if (foods[i].includes("/")) {

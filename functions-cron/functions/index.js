@@ -11,8 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.io/#x15.4.4.19
+
 const functions = require("firebase-functions");
 const fillFood = require("./fillFood.js");
+const messaging = require("./messaging.js");
 
 fillFood.getFoodsFromAPI();
 
@@ -20,10 +25,4 @@ exports.fillFood = functions.https.onRequest(async (req, res) => {
   return await fillFood.getFoodsFromAPI();
 });
 
-exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(message => {
-  console.log("This job is run every 24 hours!");
-
-  // code goes here
-
-  return true;
-});
+exports.daily_job = functions.pubsub.topic("daily-tick").onPublish((msg, context) => { return messaging.execute(msg, context); });
