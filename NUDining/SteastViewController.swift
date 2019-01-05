@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SteastViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class SteastViewController : UIViewController, UISearchBarDelegate {
     
     var mealStations: [MealStation]?
     var breakfastMealStations: [MealStation]?
@@ -19,7 +19,7 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    lazy var searchBar: UISearchBar = UISearchBar()
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,15 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
         navigationItem.title = "Stetson East"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         searchController.searchBar.barTintColor = AppDelegate.navBarColor
         navigationController?.navigationBar.barTintColor = AppDelegate.navBarColor
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Menu"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +74,26 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
         }
         self.tableView.reloadData()
     }
+}
+
+extension SteastViewController : UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        tableView.reloadData()
+    }
     
+    // MARK: - Private instance methods
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return self.searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+}
+
+extension SteastViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return mealStations?[section].title
     }
@@ -85,7 +108,13 @@ class SteastViewController : UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath) as! CustomTableViewCell
-        cell.mealStation = mealStations![indexPath.section]
+        if isFiltering() {
+            cell.items = mealStations![indexPath.section].items
+            cell.filter(by: searchController.searchBar.text ?? "")
+        } else {
+            cell.items = mealStations![indexPath.section].items
+            cell.resetFiltering()
+        }
         return cell
     }
     
