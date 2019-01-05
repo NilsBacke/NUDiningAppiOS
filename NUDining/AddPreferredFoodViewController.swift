@@ -13,7 +13,12 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var tableView: UITableView!
     
-    var foods: [String] = []
+    var foods: [String] = [] {
+        didSet {
+            self.filteredFoods = foods
+        }
+    }
+    var filteredFoods: [String] = []
     
     lazy var searchBar: UISearchBar = UISearchBar()
     
@@ -38,19 +43,18 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        var filteredFoods : [String] = []
         if !textSearched.isEmpty {
-            filteredFoods = foods.filter { food in
+            self.filteredFoods = foods.filter { food in
                 return food.lowercased().contains(textSearched.lowercased())
             }
-            foods = filteredFoods
-            
+        } else {
+            self.filteredFoods = self.foods
         }
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        FoodService.addPreferredFood(foods[indexPath.row]) { bool in
+        FoodService.addPreferredFood(filteredFoods[indexPath.row]) { bool in
             if bool {
                 self.navigationController?.popViewController(animated: true)
             } else {
@@ -61,12 +65,12 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foods.count
+        return filteredFoods.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier2")!
-        cell.textLabel?.text = foods[indexPath.row]
+        cell.textLabel?.text = filteredFoods[indexPath.row]
         return cell
     }
     
