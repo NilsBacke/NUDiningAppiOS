@@ -7,7 +7,6 @@
 //
 
 import Foundation
-typealias Item = (name: String, ingredients: String)
 
 struct MealStation {
     let title: String

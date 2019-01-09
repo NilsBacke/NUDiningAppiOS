@@ -51,17 +51,24 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        cell.nameLabel.text = filteredItems[indexPath.item].name
-        cell.ingredientsLabel.text = filteredItems[indexPath.item].ingredients
-//        ImageService.getImageFromKeyword(q: (items?[indexPath.item].name)!) { image in
-//            cell.backgroundView = UIImageView(image: image)
-//        }
+        let name = filteredItems[indexPath.item].name
+        let ingredients = filteredItems[indexPath.item].ingredients
+        cell.nameLabel.text = name
+        cell.ingredientsLabel.text = ingredients
+        ImageService.getImageURLFromFirestore(name: name) { urlOpt in
+            print("urlOpt: \(urlOpt)")
+            if let url = urlOpt {
+                ImageService.imageFromUrl(url: url, completion: { img in
+                    cell.imageView.image = img
+                })
+            }
+        }
         
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let size = CGSize(width: 150, height: 120)
-//        return size
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: 150, height: 120)
+        return size
+    }
 }

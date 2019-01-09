@@ -9,56 +9,36 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Firebase
 
 struct ImageService {
     
-    public static func getImageFromKeyword(q: String, completion: @escaping (UIImage?) -> Void) {
-        var query = q
-        
-        if query == "Orange" {
-            query = "Orange Fruit"
-        }
-        
-        let key = "AIzaSyDJbKdxDComCtL6llz1Nyu2IUpy1YShiGE"
-        let cx = "005953852519046923142%3Azj49gwvnpa8"
-        let num = 1
-        let start = 1
-        let imgSize = "medium"
-        let searchType = "image"
-        
-        let encodedQuery = q.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        
-        let url = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&key=\(key)&cx=\(cx)&num=\(num)&start=\(start)&imgSize=\(imgSize)&searchType=\(searchType)"
-        
-        Alamofire.request(url).responseJSON { response in
-            if response.result.isSuccess {
-                print("Success")
-                let json: JSON = JSON(response.result.value!)
-                if let imageURL: String = json["items"][0]["link"].string {
-                    print("imageURL: \(imageURL)")
-                    self.imageFromUrl(urlString: imageURL, completion: { img in
-                        return completion(img)
-                    })
-                } else {
-                    return completion(nil)
-                }
+    static let db = Firestore.firestore()
+    
+    public static func imageFromUrl(url: URL, completion: @escaping (UIImage?) -> Void) {
+        let request = NSURLRequest(url: url)
+        NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: OperationQueue.main) {
+            (response: URLResponse?, data: Data?, error: Error?) -> Void in
+            if let imageData = data as Data? {
+                return completion(UIImage(data: imageData))
             } else {
-                print("Failure")
                 return completion(nil)
             }
         }
     }
     
-    private static func imageFromUrl(urlString: String, completion: @escaping (UIImage?) -> Void) {
-        if let url = NSURL(string: urlString) {
-            let request = NSURLRequest(url: url as URL)
-            NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: OperationQueue.main) {
-                (response: URLResponse?, data: Data?, error: Error?) -> Void in
-                if let imageData = data as Data? {
-                    return completion(UIImage(data: imageData))
-                } else {
-                    return completion(nil)
-                }
+    public static func getImageURLFromFirestore(name: String, completion: @escaping (URL?) -> Void) {
+        let ref = db.collection("foods").whereField("name", isEqualTo: name)
+        ref.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("error: \(error)")
+                return completion(nil)
+            }
+            if let snapshot = querySnapshot {
+                let data = snapshot.documents[0].data()
+                return completion(URL(string: data["imageURL"] as! String))
+            } else {
+                return completion(nil)
             }
         }
     }
