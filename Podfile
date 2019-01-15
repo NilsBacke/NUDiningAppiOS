@@ -11,5 +11,7 @@ target 'NUDining' do
   pod 'Firebase/Messaging'
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'SCLAlertView'
+  pod 'TTGSnackbar'
 
 end

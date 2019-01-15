@@ -20,9 +20,7 @@
 		ED70EA2521DB2CA400D272CA /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */; };
 		ED7194FB21C739800086BE7E /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7194FA21C739800086BE7E /* Menu.swift */; };
 		ED94D3C221CF195200461983 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C121CF195200461983 /* MainTabBarController.swift */; };
-		ED94D3C621CF1EC100461983 /* SteastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C521CF1EC100461983 /* SteastViewController.swift */; };
-		ED94D3C821CF1ECE00461983 /* IVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C721CF1ECE00461983 /* IVViewController.swift */; };
-		ED94D3CA21CF1EE900461983 /* StwestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C921CF1EE900461983 /* StwestViewController.swift */; };
+		ED94D3C621CF1EC100461983 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3C521CF1EC100461983 /* MenuViewController.swift */; };
 		ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */; };
 		ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CD21CF22F100461983 /* FoodService.swift */; };
 		ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */; };
@@ -48,9 +46,7 @@
 		ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		ED7194FA21C739800086BE7E /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		ED94D3C121CF195200461983 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		ED94D3C521CF1EC100461983 /* SteastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteastViewController.swift; sourceTree = "<group>"; };
-		ED94D3C721CF1ECE00461983 /* IVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVViewController.swift; sourceTree = "<group>"; };
-		ED94D3C921CF1EE900461983 /* StwestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StwestViewController.swift; sourceTree = "<group>"; };
+		ED94D3C521CF1EC100461983 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		ED94D3CD21CF22F100461983 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPreferredFoodViewController.swift; sourceTree = "<group>"; };
@@ -156,9 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				ED94D3C121CF195200461983 /* MainTabBarController.swift */,
-				ED94D3C521CF1EC100461983 /* SteastViewController.swift */,
-				ED94D3C721CF1ECE00461983 /* IVViewController.swift */,
-				ED94D3C921CF1EE900461983 /* StwestViewController.swift */,
+				ED94D3C521CF1EC100461983 /* MenuViewController.swift */,
 				ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */,
 				ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */,
 			);
@@ -254,10 +248,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-NUDining/Pods-NUDining-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -272,10 +267,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -327,11 +323,9 @@
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
 				ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */,
 				ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */,
-				ED94D3C821CF1ECE00461983 /* IVViewController.swift in Sources */,
 				ED94D3C221CF195200461983 /* MainTabBarController.swift in Sources */,
 				ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */,
-				ED94D3C621CF1EC100461983 /* SteastViewController.swift in Sources */,
-				ED94D3CA21CF1EE900461983 /* StwestViewController.swift in Sources */,
+				ED94D3C621CF1EC100461983 /* MenuViewController.swift in Sources */,
 				ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */,
 				ED70EA2321DA773400D272CA /* CustomTableViewCell.swift in Sources */,
 			);

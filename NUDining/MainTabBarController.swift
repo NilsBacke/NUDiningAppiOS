@@ -11,13 +11,24 @@ import UIKit
 import Firebase
 
 class MainTabBarController : UITabBarController {
+    
+    let LABELS = ["Steast", "IV", "Stwest", "Notifications"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerForNotifications()
-        self.tabBar.tintColor = UIColor.NURed
+        self.tabBar.tintColor = UIColor.red
+        
+        let items = tabBar.items!
+        
+        for idx in 0..<items.count {
+            items[idx].title = LABELS[idx]
+            items[idx].tag = idx
+        }
     }
     
     private func registerForNotifications() {
         
     }
+    
 }

@@ -35,8 +35,12 @@ struct ImageService {
                 return completion(nil)
             }
             if let snapshot = querySnapshot {
-                let data = snapshot.documents[0].data()
-                return completion(URL(string: data["imageURL"] as! String))
+                if snapshot.documents.count != 0 {
+                    let data = snapshot.documents[0].data()
+                    return completion(URL(string: data["imageURL"] as! String))
+                } else {
+                    return completion(nil)
+                }
             } else {
                 return completion(nil)
             }

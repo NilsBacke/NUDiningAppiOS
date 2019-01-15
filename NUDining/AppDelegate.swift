@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseMessaging
-import ChameleonFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

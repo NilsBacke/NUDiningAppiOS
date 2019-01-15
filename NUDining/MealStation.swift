@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MealStation {
+class MealStation {
     let title: String
     var items: [Item] // (Name, Ingredients)
     
