@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
-struct Item {
+class Item {
     let name: String
     let ingredients: String
+    var image: UIImage?
     
-    init(name: String, ingredients: String) {
+    init(name: String, ingredients: String, image: UIImage?) {
         self.name = name
         self.ingredients = ingredients
+        self.image = image
     }
 }

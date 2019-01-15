@@ -14,21 +14,34 @@ class CollectionViewCell : UICollectionViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ingredientsLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var view: UIView!
     
-    
-    let motionManager = CMMotionManager()
+    @IBOutlet weak var wholeStackView: UIStackView!
+    @IBOutlet weak var textStackView: UIStackView!
+    private var shadowLayer: CAShapeLayer!
+    private var cornerRadius: CGFloat = 10.0
     
     override func layoutSubviews() {
-        if motionManager.isDeviceMotionAvailable {
-            motionManager.deviceMotionUpdateInterval = 0.02
-            motionManager.startDeviceMotionUpdates(to: .main, withHandler: { (motion, error) in
-                if let motion = motion {
-                    let pitch = motion.attitude.pitch * 10 // x-axis
-                    let roll = motion.attitude.roll * 10 // y-axis
-//                    self.applyShadow(width: CGFloat(roll), height: CGFloat(pitch))
-                }
-            })
-        }
+        super.layoutSubviews()
+//        view.clipsToBounds = true
+//        view.layer.cornerRadius = 10
+//        view.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+//        view.clipsToBounds = true
+//        view.layer.shadowColor = UIColor.black.cgColor
+//        view.layer.shadowOffset = CGSize(width: 5, height: 5)
+//        view.layer.shadowRadius = 5
+//        view.layer.shadowOpacity = 0.5
+        view.backgroundColor = UIColor.clear
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 3, height: 3)
+        view.layer.shadowOpacity = 0.7
+        view.layer.shadowRadius = 4.0
+        
+        let borderView = UIView()
+        borderView.frame = view.bounds
+        borderView.layer.cornerRadius = 10
+        borderView.layer.masksToBounds = true
+        view.addSubview(borderView)
     }
 }

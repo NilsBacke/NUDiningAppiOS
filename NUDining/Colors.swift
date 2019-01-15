@@ -10,5 +10,6 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    static let NURed = UIColor(hexString: "C0392B")
+//    static let NURed = UIColor(hexString: "C0392B")
+//    UIColor(
 }
