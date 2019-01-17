@@ -55,12 +55,10 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         FoodService.addPreferredFood(filteredFoods[indexPath.row]) { bool in
-            if bool {
-                self.navigationController?.popViewController(animated: true)
-            } else {
+            if !bool {
                 print("could not add preferred food")
-                self.navigationController?.popViewController(animated: true)
             }
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
