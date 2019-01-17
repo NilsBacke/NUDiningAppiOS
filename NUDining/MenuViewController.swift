@@ -23,8 +23,6 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
@@ -140,6 +138,7 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath) as! CustomTableViewCell
+        cell.parent = self
         if isFiltering() {
             cell.items = mealStations![indexPath.section].items
             cell.filter(by: searchController.searchBar.text ?? "")

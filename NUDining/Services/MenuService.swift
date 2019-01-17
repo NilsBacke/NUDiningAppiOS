@@ -22,7 +22,7 @@ struct MenuService {
     // get today's date in String format: YYYY-MM-DD
     private static var todaysDate: String {
         if DEBUG == true {
-            return "2019-01-14"
+            return "2019-01-15"
         }
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")
@@ -123,7 +123,8 @@ struct MenuService {
         var items: [Item] = []
         for item in itemList {
             let name: String = item["name"].stringValue
-            let ingredients: String = item["ingredients"].stringValue
+            var ingredients: String = item["ingredients"].stringValue
+            ingredients = ingredients.replacingOccurrences(of: "&amp;", with: "&")
             items.append(Item(name: name, ingredients: ingredients, image: nil))
         }
         return MealStation(title: name, items: items)

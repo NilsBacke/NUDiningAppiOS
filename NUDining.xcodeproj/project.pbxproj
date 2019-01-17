@@ -24,6 +24,8 @@
 		ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */; };
 		ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CD21CF22F100461983 /* FoodService.swift */; };
 		ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */; };
+		EDB89EB921EE55A200BA6861 /* ItemDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB89EB821EE55A200BA6861 /* ItemDetailViewController.storyboard */; };
+		EDB89EBB21EE55BC00BA6861 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB89EBA21EE55BC00BA6861 /* ItemDetailViewController.swift */; };
 		EDCD888F21E0149C005EA291 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD888E21E0149C005EA291 /* Colors.swift */; };
 		EDCD889121E04BDF005EA291 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD889021E04BDF005EA291 /* Item.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		ED94D3CD21CF22F100461983 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPreferredFoodViewController.swift; sourceTree = "<group>"; };
+		EDB89EB821EE55A200BA6861 /* ItemDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemDetailViewController.storyboard; sourceTree = "<group>"; };
+		EDB89EBA21EE55BC00BA6861 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		EDCD888E21E0149C005EA291 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EDCD889021E04BDF005EA291 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +148,7 @@
 				ED5D17CD21C60049001C6664 /* Main.storyboard */,
 				ED70EA2221DA773400D272CA /* CustomTableViewCell.swift */,
 				ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */,
+				EDB89EB821EE55A200BA6861 /* ItemDetailViewController.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				ED94D3C521CF1EC100461983 /* MenuViewController.swift */,
 				ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */,
 				ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */,
+				EDB89EBA21EE55BC00BA6861 /* ItemDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -230,6 +236,7 @@
 				ED5D17D421C6004B001C6664 /* LaunchScreen.storyboard in Resources */,
 				ED5D17FA21C6018B001C6664 /* GoogleService-Info.plist in Resources */,
 				ED5D17D121C6004B001C6664 /* Assets.xcassets in Resources */,
+				EDB89EB921EE55A200BA6861 /* ItemDetailViewController.storyboard in Resources */,
 				ED5D17CF21C60049001C6664 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +326,7 @@
 				ED70EA2521DB2CA400D272CA /* CollectionViewCell.swift in Sources */,
 				ED94D3CE21CF22F100461983 /* FoodService.swift in Sources */,
 				EDCD889121E04BDF005EA291 /* Item.swift in Sources */,
+				EDB89EBB21EE55BC00BA6861 /* ItemDetailViewController.swift in Sources */,
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
 				ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */,

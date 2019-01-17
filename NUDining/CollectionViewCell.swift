@@ -43,5 +43,6 @@ class CollectionViewCell : UICollectionViewCell {
         borderView.layer.cornerRadius = 10
         borderView.layer.masksToBounds = true
         view.addSubview(borderView)
+        view.clipsToBounds = true
     }
 }
