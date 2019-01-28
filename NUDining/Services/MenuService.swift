@@ -12,8 +12,6 @@ import SwiftyJSON
 
 typealias MenuDict = [Location : [TimeOfDay : Menu]]
 
-let DEBUG: Bool = true
-
 struct MenuService {
     
     private static let locations: [Location] = [Location.Steast, Location.IV, Location.Stwest]
@@ -21,14 +19,12 @@ struct MenuService {
     
     // get today's date in String format: YYYY-MM-DD
     private static var todaysDate: String {
-        if DEBUG == true {
-            return "2019-01-15"
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
-        let date = Date()
-        return dateFormatter.string(from: date)
+        let todaysDate:Date = Date()
+        let dateFormatter:DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayString:String = dateFormatter.string(from: todaysDate)
+        print("date: \(todayString)")
+        return todayString
     }
     
     // [ Location : [ TimeOfDay : Menu ]]
@@ -145,32 +141,6 @@ struct MenuService {
             }
         }
     }
-    
-//    private static func setAllImages(menuDict: MenuDict, completion: @escaping (MenuDict) -> Void) {
-//        let group = DispatchGroup()
-//        for loc in locations {
-//            for timeOfDay in timesOfDay {
-//                if let menu: Menu = menuDict[loc]?[timeOfDay] {
-//                    for mealStation in menu.mealStations {
-//                        for item in mealStation.items {
-//                            group.enter()
-//                            ImageService.getImageURLFromFirestore(name: item.name) { urlOpt in
-//                                if let url = urlOpt {
-//                                    ImageService.imageFromUrl(url: url, completion: { img in
-//                                        item.image = img
-//                                        group.leave()
-//                                    })
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        group.notify(queue: .main) {
-//            return completion(menuDict)
-//        }
-//    }
     
     // translate the given location to its id
     static func getLocationID(from location: Location) -> String {

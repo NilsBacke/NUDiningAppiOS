@@ -16,7 +16,7 @@ class MainTabBarController : UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.registerForNotifications()
+        FoodService.saveDeviceID()
         self.tabBar.tintColor = UIColor.red
         
         let items = tabBar.items!
@@ -25,10 +25,6 @@ class MainTabBarController : UITabBarController {
             items[idx].title = LABELS[idx]
             items[idx].tag = idx
         }
-    }
-    
-    private func registerForNotifications() {
-        
     }
     
 }

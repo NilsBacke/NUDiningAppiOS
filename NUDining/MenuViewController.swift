@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DZNEmptyDataSet
 
 class MenuViewController : UIViewController, UISearchBarDelegate {
     
@@ -21,12 +22,19 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
+    var currSegControlIdx: Int?
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
+        print("viewDidLoad")
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -38,6 +46,13 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Search Menu"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "used") as! Bool == false {
+            segmentedControl.selectedSegmentIndex = defaults.object(forKey: "hour") as! Int
+            currSegControlIdx = defaults.object(forKey: "hour") as! Int
+            defaults.set(true, forKey: "used")
+        }
         
         let selectedIndex = self.tabBarController?.tabBar.tag
         switch selectedIndex {
@@ -57,7 +72,11 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
         self.navigationItem.title = parent?.restorationIdentifier
+        
+        segmentedControl.selectedSegmentIndex = currSegControlIdx ?? 0
+        
         var location: Location = .Steast
         switch self.navigationItem.title {
         case "Stetson East":
@@ -95,10 +114,13 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             self.mealStations = self.breakfastMealStations?.sorted {$0.title < $1.title}
+            currSegControlIdx = 0
         case 1:
             self.mealStations = self.lunchMealStations?.sorted {$0.title < $1.title}
+            currSegControlIdx = 1
         case 2:
             self.mealStations = self.dinnerMealStations?.sorted {$0.title < $1.title}
+            currSegControlIdx = 2
         default:
             break
         }
@@ -123,7 +145,7 @@ extension MenuViewController : UISearchResultsUpdating {
     }
 }
 
-extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
+extension MenuViewController : UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return mealStations?[section].title
     }
@@ -151,5 +173,17 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 165.0
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage.init(named: "closed")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "Dining Hall Closed")
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "\(self.navigationItem.title ?? "") is closed today at this time.") 
     }
 }

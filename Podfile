@@ -13,5 +13,7 @@ target 'NUDining' do
   pod 'SwiftyJSON'
   pod 'SCLAlertView'
   pod 'TTGSnackbar'
+  pod 'SDWebImage', '~> 4.0'
+  pod 'DZNEmptyDataSet'
 
 end
