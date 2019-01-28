@@ -6,6 +6,7 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
+  - DZNEmptyDataSet (1.8.1)
   - Firebase/Core (5.11.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.3.0)
@@ -119,15 +120,20 @@ PODS:
   - nanopb/encode (0.3.901)
   - Protobuf (3.6.1)
   - SCLAlertView (0.8)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
   - SwiftyJSON (4.2.0)
   - TTGSnackbar (1.7.5)
 
 DEPENDENCIES:
   - Alamofire
+  - DZNEmptyDataSet
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Messaging
   - SCLAlertView
+  - SDWebImage (~> 4.0)
   - SwiftyJSON
   - TTGSnackbar
 
@@ -135,6 +141,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BoringSSL
+    - DZNEmptyDataSet
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -154,12 +161,14 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SCLAlertView
+    - SDWebImage
     - SwiftyJSON
     - TTGSnackbar
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -179,9 +188,10 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: e6cb44802ed5d38e7254c93122b238129ce23740
+PODFILE CHECKSUM: c2ef5b3ffde95583ea059232429aef6b048b139e
 
 COCOAPODS: 1.5.3

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SCLAlertView
 import TTGSnackbar
+import SDWebImage
 
 class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -61,19 +62,21 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         cell.nameLabel.text = name
         cell.ingredientsLabel.text = ingredients
         
+        cell.imageView.contentMode = .scaleAspectFill
         if let img = filteredItems[indexPath.item].image {
             print("image saved")
             cell.imageView.image = img
         } else {
+            cell.imageView?.image = UIImage.init(named: "placeholder")
             ImageService.getImageURLFromFirestore(name: name) { urlOpt in
                 if let url = urlOpt {
-                    ImageService.imageFromUrl(url: url, completion: { img in
-                        cell.imageView.image = img
+                    cell.imageView?.sd_setImage(with: url, placeholderImage: UIImage.init(named: "placeholder"), options: SDWebImageOptions.continueInBackground) {
+                        (image, error, cacheType, imageURL) in
                         if self.filteredItems.count > indexPath.item {
-                            self.filteredItems[indexPath.item].image = img
+                            self.filteredItems[indexPath.item].image = image
                             print("save image")
                         }
-                    })
+                    }
                 }
             }
         }

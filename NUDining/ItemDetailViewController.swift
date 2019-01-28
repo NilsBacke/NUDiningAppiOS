@@ -22,6 +22,7 @@ class ItemDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.contentMode = .scaleAspectFill
         imageView.image = item.image
         alertView.clipsToBounds = true
         imageView.clipsToBounds = true

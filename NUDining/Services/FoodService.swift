@@ -85,6 +85,7 @@ struct FoodService {
             guard let _id = id else {
                 fatalError("device ID is nil")
             }
+            print("id: \(_id)")
             db.collection("devices").document(_id).setData(["deviceID" : _id])
         }
     }
