@@ -15,5 +15,6 @@ target 'NUDining' do
   pod 'TTGSnackbar'
   pod 'SDWebImage', '~> 4.0'
   pod 'DZNEmptyDataSet'
+  pod 'CRRefresh'
 
 end

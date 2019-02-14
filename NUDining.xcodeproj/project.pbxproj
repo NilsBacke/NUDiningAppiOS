@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5CADB974E3D906FA57276B86 /* Pods_NUDining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E00C82AC85579D536DD80EB /* Pods_NUDining.framework */; };
 		ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0BFC8E21D7C6EE0009651C /* ImageService.swift */; };
+		ED2608AD22014EBD00EF8362 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2608AC22014EBD00EF8362 /* CustomImageView.swift */; };
 		ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C7E21C8649200D49A95 /* MealStation.swift */; };
 		ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C8121C8668A00D49A95 /* MenuService.swift */; };
 		ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D17C921C60049001C6664 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		24AA1110F902336D714C4FC2 /* Pods-NUDining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUDining.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUDining/Pods-NUDining.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1260E576AF70964B794D1D /* Pods-NUDining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUDining.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUDining/Pods-NUDining.release.xcconfig"; sourceTree = "<group>"; };
 		ED0BFC8E21D7C6EE0009651C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		ED2608AC22014EBD00EF8362 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		ED413C7E21C8649200D49A95 /* MealStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealStation.swift; sourceTree = "<group>"; };
 		ED413C8121C8668A00D49A95 /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
 		ED5D17C621C60049001C6664 /* NUDining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NUDining.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +153,7 @@
 				ED70EA2221DA773400D272CA /* CustomTableViewCell.swift */,
 				ED70EA2421DB2CA400D272CA /* CollectionViewCell.swift */,
 				EDB89EB821EE55A200BA6861 /* ItemDetailViewController.storyboard */,
+				ED2608AC22014EBD00EF8362 /* CustomImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-NUDining/Pods-NUDining-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/CRRefresh/CRRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -283,6 +287,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -341,6 +346,7 @@
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
 				ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */,
+				ED2608AD22014EBD00EF8362 /* CustomImageView.swift in Sources */,
 				ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */,
 				ED94D3C221CF195200461983 /* MainTabBarController.swift in Sources */,
 				ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */,

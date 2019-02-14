@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import DZNEmptyDataSet
+import CRRefresh
 
 class MenuViewController : UIViewController, UISearchBarDelegate {
     
@@ -22,9 +23,11 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var currSegControlIdx: Int?
+    var currIdx: Int = -1
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         print("viewDidLoad")
@@ -47,12 +50,11 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        let defaults = UserDefaults.standard
-        if defaults.object(forKey: "used") as! Bool == false {
-            segmentedControl.selectedSegmentIndex = defaults.object(forKey: "hour") as! Int
-            currSegControlIdx = defaults.object(forKey: "hour") as! Int
-            defaults.set(true, forKey: "used")
+        if currIdx == -1 {
+            let defaults = UserDefaults.standard
+            currIdx = defaults.integer(forKey: "index")
         }
+        segmentedControl.selectedSegmentIndex = currIdx
         
         let selectedIndex = self.tabBarController?.tabBar.tag
         switch selectedIndex {
@@ -69,15 +71,28 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
             location = .Steast
             navigationItem.title = "Stetson East"
         }
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        /// animator: your customize animator, default is NormalHeaderAnimator
+        tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
+            self?.refreshMenuData("") {
+                self?.tableView.cr.endHeaderRefresh()
+            }
+        }
+        /// manual refresh
+        tableView.cr.beginHeaderRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
         self.navigationItem.title = parent?.restorationIdentifier
         
-        segmentedControl.selectedSegmentIndex = currSegControlIdx ?? 0
+        print("currIdx: \(currIdx)")
+        let defaults = UserDefaults.standard
+        segmentedControl.selectedSegmentIndex = defaults.integer(forKey: "index")
         
-        var location: Location = .Steast
         switch self.navigationItem.title {
         case "Stetson East":
             location = .Steast
@@ -88,6 +103,12 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         default:
             location = .Steast
         }
+        refreshMenuData("") {
+            
+        }
+    }
+    
+    @objc private func refreshMenuData(_ sender: Any, completion: @escaping () -> (Void)) {
         let group = DispatchGroup()
         group.enter()
         MenuService.getSpecificMenu(location: location, timeOfDay: .Breakfast) { menu in
@@ -106,6 +127,8 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         }
         group.notify(queue: .main) {
             self.indexChanged("")
+            self.tableView.reloadData()
+            completion()
         }
         
     }
@@ -114,16 +137,19 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             self.mealStations = self.breakfastMealStations?.sorted {$0.title < $1.title}
-            currSegControlIdx = 0
+            currIdx = 0
         case 1:
             self.mealStations = self.lunchMealStations?.sorted {$0.title < $1.title}
-            currSegControlIdx = 1
+            currIdx = 1
         case 2:
             self.mealStations = self.dinnerMealStations?.sorted {$0.title < $1.title}
-            currSegControlIdx = 2
+            currIdx = 2
         default:
             break
         }
+        print("currIddx: \(currIdx)")
+        let defaults = UserDefaults.standard
+        defaults.set(currIdx, forKey: "index")
         self.tableView.reloadData()
     }
 }
@@ -146,6 +172,7 @@ extension MenuViewController : UISearchResultsUpdating {
 }
 
 extension MenuViewController : UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return mealStations?[section].title
     }

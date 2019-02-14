@@ -27,7 +27,7 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
         self.tableView.dataSource = self
         self.tableView.delegate = self
         searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = " Search..."
+        
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()

@@ -6,6 +6,7 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
+  - CRRefresh (1.1.3)
   - DZNEmptyDataSet (1.8.1)
   - Firebase/Core (5.11.0):
     - Firebase/CoreOnly
@@ -128,6 +129,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - CRRefresh
   - DZNEmptyDataSet
   - Firebase/Core
   - Firebase/Firestore
@@ -141,6 +143,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BoringSSL
+    - CRRefresh
     - DZNEmptyDataSet
     - Firebase
     - FirebaseAnalytics
@@ -168,6 +171,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  CRRefresh: 1415d4ae06837fa7bb064c44f2e102f3ef517044
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
@@ -192,6 +196,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: c2ef5b3ffde95583ea059232429aef6b048b139e
+PODFILE CHECKSUM: 1c9383b701df14aac1132862ed24b9aedc6a7c8c
 
 COCOAPODS: 1.5.3

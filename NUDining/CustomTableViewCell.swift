@@ -64,7 +64,6 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         
         cell.imageView.contentMode = .scaleAspectFill
         if let img = filteredItems[indexPath.item].image {
-            print("image saved")
             cell.imageView.image = img
         } else {
             cell.imageView?.image = UIImage.init(named: "placeholder")
@@ -74,7 +73,6 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
                         (image, error, cacheType, imageURL) in
                         if self.filteredItems.count > indexPath.item {
                             self.filteredItems[indexPath.item].image = image
-                            print("save image")
                         }
                     }
                 }

@@ -139,7 +139,7 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tvq-jj-kuF">
-                                <rect key="frame" x="60" y="98" width="255" height="29"/>
+                                <rect key="frame" x="65" y="98" width="245" height="29"/>
                                 <segments>
                                     <segment title="Breakfast"/>
                                     <segment title="Lunch"/>
@@ -152,19 +152,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="10" id="1fV-BG-NCi"/>
-                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="Tvq-jj-kuF" secondAttribute="trailing" constant="60" id="1jf-Sm-3qP"/>
-                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="60" id="GNG-26-MwA"/>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="Tvq-jj-kuF" secondAttribute="bottom" constant="10" id="Gsg-wa-bOF"/>
+                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="65" id="WLS-yF-I7a"/>
                             <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="aBh-UW-3og"/>
+                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="10" id="aDv-UB-Ukf"/>
+                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="Tvq-jj-kuF" secondAttribute="trailing" constant="65" id="aRj-E1-Hel"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="izh-E0-pfP"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="mbv-E0-4Nv"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="Tvq-jj-kuF" secondAttribute="bottom" constant="10" id="sZE-nI-NRf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h0L-Kb-P5Q"/>
                     </view>
                     <navigationItem key="navigationItem" id="OOt-Rt-diH"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="Tvq-jj-kuF" id="mVN-2O-fUN"/>
+                        <outlet property="segmentedControl" destination="Tvq-jj-kuF" id="JLX-ZK-cBP"/>
                         <outlet property="tableView" destination="1hh-Py-orv" id="3Al-jw-1B3"/>
                     </connections>
                 </viewController>

@@ -18,26 +18,23 @@ const host = "https://api.cognitive.microsoft.com";
 const path = "/bing/v7.0/images/search";
 
 const locations = [
-  "5b9bd1c41178e90d4774210e",
-  "586d17503191a27120e60dec",
+  // "5b9bd1c41178e90d4774210e",
+  // "586d17503191a27120e60dec",
   "586d05e4ee596f6e6c04b527"
 ];
 
 const dates = [
-  // "2018-12-01",
-  // "2018-12-02",
-  // "2018-12-03",
-  // "2018-12-04",
-  // "2018-12-05",
-  // "2018-12-06",
-  // "2018-12-07",
-  // "2018-12-08",
-  // "2018-12-09",
-  // "2018-12-10",
-  // "2018-12-11",
-  // "2018-12-12",
-  "2018-12-13",
-  "2018-12-14"
+  // "2019-01-14",
+  // "2019-01-15",
+  // "2019-01-16",
+  // "2019-01-17"
+  // "2019-01-18",
+  // "2019-01-19",
+  // "2019-01-20",
+  // "2019-01-21",
+  // "2019-01-22",
+  // "2019-01-22",
+  "2019-02-01"
 ];
 
 // fill cloud firestore with foods
@@ -63,10 +60,13 @@ module.exports = {
     console.log("num foods: " + foodsNames.length);
     var foodItems = [];
     for (var i = 0; i < foodsNames.length; i++) {
-      var imageURL = await getImageURL(foodsNames[i]);
-      await sleep(5); // 5 ms
-      foodItems.push(new Item(foodsNames[i], imageURL));
+      if (!(await foodExists(foodsNames[i]))) {
+        var imageURL = await getImageURL(foodsNames[i]);
+        await sleep(5); // 5 ms
+        foodItems.push(new Item(foodsNames[i], imageURL));
+      }
     }
+    console.log("foodItemsLength: " + foodItems.length);
     await uploadToFirestore(foodItems);
     return true;
   }
@@ -96,12 +96,23 @@ async function uploadToFirestore(foods) {
   var db = admin.firestore();
   var ref = db.collection("foods");
   for (var i = 0; i < foods.length; i++) {
-    if (foods[i].name.includes("/")) {
-      foods[i] = foods[i].name.replace("/", "");
+    if (
+      foods[i].name &&
+      foods[i].imageURL &&
+      foods[i].name instanceof String &&
+      foods[i].imageURL instanceof String &&
+      foods[i].name.length != 0 &&
+      foods[i].name != "" &&
+      foods[i].imageURL.length != 0 &&
+      foods[i].imageURL != ""
+    ) {
+      if (foods[i].name.includes("/")) {
+        foods[i] = foods[i].name.replace("/", "");
+      }
+      await ref
+        .doc(foods[i].name)
+        .set({ name: foods[i].name, imageURL: foods[i].imageURL });
     }
-    await ref
-      .doc(foods[i].name)
-      .set({ name: foods[i].name, imageURL: foods[i].imageURL });
   }
 }
 
@@ -183,6 +194,18 @@ function sleep(ms) {
   return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
+}
+
+async function foodExists(item) {
+  var db = admin.firestore();
+  var ref = db.collection("foods");
+  var snapshot = await ref.get();
+  snapshot.forEach(doc => {
+    if (doc.data()["name"] === item) {
+      return true;
+    }
+  });
+  return false;
 }
 
 function Item(name, imageURL) {

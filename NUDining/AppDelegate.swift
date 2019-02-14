@@ -33,8 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let hour = self.getInitialTimeOfDay()
         let userDefaults = UserDefaults.standard
-        userDefaults.set(hour, forKey: "hour")
-        userDefaults.set(false, forKey: "used")
+        userDefaults.set(hour, forKey: "index")
         
         return true
     }
