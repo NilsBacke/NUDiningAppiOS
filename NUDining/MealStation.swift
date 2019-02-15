@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct MealStation {
+class MealStation {
     let title: String
-    let items: [(name: String, ingredients: String)] // (Name, Ingredients)
+    var items: [Item] // (Name, Ingredients)
     
-    init(title: String, items: [(String, String)]) {
+    init(title: String, items: [Item]) {
         self.title = title
         self.items = items
     }

@@ -11,6 +11,9 @@ target 'NUDining' do
   pod 'Firebase/Messaging'
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+  pod 'SCLAlertView'
+  pod 'TTGSnackbar'
+  pod 'SDWebImage', '~> 4.0'
+  pod 'DZNEmptyDataSet'
 
 end
