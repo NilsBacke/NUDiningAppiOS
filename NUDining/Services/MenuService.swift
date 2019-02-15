@@ -12,8 +12,6 @@ import SwiftyJSON
 
 typealias MenuDict = [Location : [TimeOfDay : Menu]]
 
-let DEBUG: Bool = true
-
 struct MenuService {
     
     private static let locations: [Location] = [Location.Steast, Location.IV, Location.Stwest]
@@ -21,14 +19,11 @@ struct MenuService {
     
     // get today's date in String format: YYYY-MM-DD
     private static var todaysDate: String {
-        if DEBUG == true {
-            return "2018-12-14"
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
-        let date = Date()
-        return dateFormatter.string(from: date)
+        let todaysDate: Date = Date()
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayString: String = dateFormatter.string(from: todaysDate)
+        return todayString
     }
     
     // [ Location : [ TimeOfDay : Menu ]]
@@ -65,14 +60,8 @@ struct MenuService {
             // dispatch groups are used to synchronously perform the API fetch
             group1.enter()
             getJSONFromURL(urlPath: getURL(location: loc, date: todaysDate)) { jsonData in
-                if let json = jsonData { // if there is data
-                    var dict: [TimeOfDay : Menu] = [:]
-                    for timeOfDay in timesOfDay {
-                        let menu = getMenu(json: json, location: loc, timeOfDay: timeOfDay)
-                        if let menuObj = menu { // if the data is properly formed (the location is open at the specified time of day)
-                            dict[timeOfDay] = menuObj
-                        }
-                    }
+                if let json = jsonData {
+                    let dict = getMenuFromJSON(json, location: loc)
                     menus[loc] = dict
                 }
                 group1.leave()
@@ -84,6 +73,19 @@ struct MenuService {
             return completion(menus)
         }
     }
+    
+    private static func getMenuFromJSON(_ json: JSON, location loc: Location) -> [TimeOfDay : Menu] {
+        // if there is data
+        var dict: [TimeOfDay : Menu] = [:]
+        for timeOfDay in timesOfDay {
+            let menu = getMenu(json: json, location: loc, timeOfDay: timeOfDay)
+            if let menuObj = menu { // if the data is properly formed (the location is open at the specified time of day)
+                dict[timeOfDay] = menuObj
+            }
+        }
+        return dict
+    }
+    
     
     // returns the menu for a specific location and time of day
     private static func getMenu(json: JSON, location: Location, timeOfDay: TimeOfDay) -> Menu? {
@@ -98,24 +100,29 @@ struct MenuService {
                 let categories: [JSON] = period["categories"].arrayValue
                 var mealStations: [MealStation] = []
                 for category in categories {
-                    let name: String = category["name"].stringValue
-                    print("name: \(name)")
-                    let itemList: [JSON] = category["items"].arrayValue
-                    var items: [(String, String)] = []
-                    for item in itemList {
-                        print("item")
-                        let name: String = item["name"].stringValue
-                        let ingredients: String = item["ingredients"].stringValue
-                        print("ingredients: \(ingredients)")
-                        items.append((name, ingredients))
-                    }
-                    
-                    mealStations.append(MealStation(title: name, items: items))
+                    let mealStation = getMealStationFromCategory(category)
+                    mealStations.append(mealStation)
                 }
+                print("menu: \(Menu(location: location, timeOfDay: timeOfDay, mealStations: mealStations))")
                 return Menu(location: location, timeOfDay: timeOfDay, mealStations: mealStations)
+                
             }
         }
         return nil
+    }
+    
+    private static func getMealStationFromCategory(_ category: JSON) -> MealStation {
+        let name: String = category["name"].stringValue
+        print("name: \(name)")
+        let itemList: [JSON] = category["items"].arrayValue
+        var items: [Item] = []
+        for item in itemList {
+            let name: String = item["name"].stringValue
+            var ingredients: String = item["ingredients"].stringValue
+            ingredients = ingredients.replacingOccurrences(of: "&amp;", with: "&")
+            items.append(Item(name: name, ingredients: ingredients, image: nil))
+        }
+        return MealStation(title: name, items: items)
     }
     
     // returns the JSON data from the given url

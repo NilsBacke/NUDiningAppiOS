@@ -13,16 +13,21 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var tableView: UITableView!
     
-    var foods: [String] = []
+    var foods: [String] = [] {
+        didSet {
+            self.filteredFoods = foods
+        }
+    }
+    var filteredFoods: [String] = []
     
-    lazy var searchBar:UISearchBar = UISearchBar()
+    lazy var searchBar: UISearchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = " Search..."
+        
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
@@ -38,35 +43,32 @@ class AddPreferredFoodViewController: UIViewController, UITableViewDataSource, U
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        var filteredFoods : [String] = []
         if !textSearched.isEmpty {
-            filteredFoods = foods.filter { food in
+            self.filteredFoods = foods.filter { food in
                 return food.lowercased().contains(textSearched.lowercased())
             }
-            foods = filteredFoods
-            
+        } else {
+            self.filteredFoods = self.foods
         }
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        FoodService.addPreferredFood(foods[indexPath.row]) { bool in
-            if bool {
-                self.navigationController?.popViewController(animated: true)
-            } else {
+        FoodService.addPreferredFood(filteredFoods[indexPath.row]) { bool in
+            if !bool {
                 print("could not add preferred food")
-                self.navigationController?.popViewController(animated: true)
             }
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foods.count
+        return filteredFoods.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier2")!
-        cell.textLabel?.text = foods[indexPath.row]
+        cell.textLabel?.text = filteredFoods[indexPath.row]
         return cell
     }
     

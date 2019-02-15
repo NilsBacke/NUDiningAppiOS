@@ -20,7 +20,7 @@ enum TimeOfDay {
     case Dinner
 }
 
-struct Menu {
+class Menu {
     let location: Location
     let locationID: String
     let timeOfDay: TimeOfDay
