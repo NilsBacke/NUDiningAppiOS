@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -34,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let hour = self.getInitialTimeOfDay()
         let userDefaults = UserDefaults.standard
         userDefaults.set(hour, forKey: "index")
+        
+        Instabug.start(withToken: "f396065702f0ec0c8a191f425beb1072", invocationEvents: [.shake, .screenshot])
         
         return true
     }
