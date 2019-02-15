@@ -10,7 +10,8 @@
 #endif
 #endif
 
+#import "SpringIndicator.h"
 
-FOUNDATION_EXPORT double CRRefreshVersionNumber;
-FOUNDATION_EXPORT const unsigned char CRRefreshVersionString[];
+FOUNDATION_EXPORT double SpringIndicatorVersionNumber;
+FOUNDATION_EXPORT const unsigned char SpringIndicatorVersionString[];
 

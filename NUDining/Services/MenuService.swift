@@ -19,13 +19,11 @@ struct MenuService {
     
     // get today's date in String format: YYYY-MM-DD
     private static var todaysDate: String {
-        let todaysDate:Date = Date()
-        let dateFormatter:DateFormatter = DateFormatter()
+        let todaysDate: Date = Date()
+        let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todayString:String = dateFormatter.string(from: todaysDate)
-        print("date: \(todayString)")
-//        return todayString
-        return "2019-02-01"
+        let todayString: String = dateFormatter.string(from: todaysDate)
+        return todayString
     }
     
     // [ Location : [ TimeOfDay : Menu ]]

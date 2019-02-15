@@ -24,14 +24,6 @@ class CollectionViewCell : UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        view.clipsToBounds = true
-//        view.layer.cornerRadius = 10
-//        view.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-//        view.clipsToBounds = true
-//        view.layer.shadowColor = UIColor.black.cgColor
-//        view.layer.shadowOffset = CGSize(width: 5, height: 5)
-//        view.layer.shadowRadius = 5
-//        view.layer.shadowOpacity = 0.5
         view.backgroundColor = UIColor.clear
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 3, height: 3)

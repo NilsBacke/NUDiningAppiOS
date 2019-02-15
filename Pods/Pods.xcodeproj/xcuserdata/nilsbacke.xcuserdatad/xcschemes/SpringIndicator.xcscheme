@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7504E742BF9156F50620315062EA61B8"
-               BlueprintName = "CRRefresh"
+               BlueprintIdentifier = "C57649425B71323951F2068D0220F47E"
+               BlueprintName = "SpringIndicator"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "CRRefresh.framework">
+               BuildableName = "SpringIndicator.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -23,7 +23,12 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = item.image
+        if item.image != nil {
+            imageView.image = item.image
+        } else {
+            imageView.image = UIImage(named: "placeholder")
+        }
+        
         alertView.clipsToBounds = true
         imageView.clipsToBounds = true
         nameLabel.text = item.name
@@ -67,13 +72,13 @@ class ItemDetailViewController: UIViewController {
     
     func showSuccessSnackbar(foodName: String) {
         let snackbar = TTGSnackbar(message: "\(foodName) added",
-            duration: .middle)
+            duration: .short)
         snackbar.show()
     }
     
     func showFailureSnackbar(foodName: String) {
         let snackbar = TTGSnackbar(message: "Failed to add \(foodName). Please try again.",
-            duration: .middle)
+            duration: .short)
         snackbar.show()
     }
     

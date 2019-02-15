@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SCLAlertView
-import TTGSnackbar
 import SDWebImage
 
 class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -23,7 +22,7 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     var filteredItems: [Item]
     
-    var parent: UIViewController!
+    var parent: MenuViewController!
     
     override func awakeFromNib() {
         self.collectionView.delegate = self
@@ -78,8 +77,6 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
                 }
             }
         }
-       
-        
         return cell
     }
     
@@ -89,6 +86,17 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didSelectItemAt")
+        if self.parent.searchController.isActive {
+            self.parent.searchController.dismiss(animated: true) {
+                self.showPopup(indexPath: indexPath)
+            }
+        } else {
+            self.showPopup(indexPath: indexPath)
+        }
+    }
+    
+    private func showPopup(indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "ItemDetailViewController", bundle: nil)
         let customAlert = storyboard.instantiateViewController(withIdentifier: "ItemDetailViewController") as! ItemDetailViewController
         customAlert.providesPresentationContextTransitionStyle = true

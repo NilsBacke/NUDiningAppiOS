@@ -19,11 +19,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hh-Py-orv">
-                                <rect key="frame" x="0.0" y="136" width="375" height="676"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segControlCell" id="IU6-ZW-oz4" customClass="SegControlTableViewCell" customModule="NUDining" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IU6-ZW-oz4" id="11P-5I-cVv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tvq-jj-kuF">
+                                                    <rect key="frame" x="65" y="8.0000000000000018" width="245" height="28.666666666666671"/>
+                                                    <segments>
+                                                        <segment title="Breakfast"/>
+                                                        <segment title="Lunch"/>
+                                                        <segment title="Dinner"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tvq-jj-kuF" firstAttribute="top" secondItem="11P-5I-cVv" secondAttribute="top" constant="8" id="19m-1M-5pZ"/>
+                                                <constraint firstItem="Tvq-jj-kuF" firstAttribute="centerX" secondItem="11P-5I-cVv" secondAttribute="centerX" id="C8j-Mj-xeM"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tvq-jj-kuF" secondAttribute="trailing" constant="65" id="Dkf-af-oec"/>
+                                                <constraint firstItem="Tvq-jj-kuF" firstAttribute="leading" secondItem="11P-5I-cVv" secondAttribute="leading" constant="65" id="Tec-pv-DJK"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tvq-jj-kuF" secondAttribute="bottom" constant="8" id="qzZ-8f-HD6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl" destination="Tvq-jj-kuF" id="jDX-aJ-BHz"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" rowHeight="155" id="9ht-B4-EUj" customClass="CustomTableViewCell" customModule="NUDining" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="155"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ht-B4-EUj" id="DyV-5Y-mmg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="154.66666666666666"/>
@@ -138,33 +166,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tvq-jj-kuF">
-                                <rect key="frame" x="65" y="98" width="245" height="29"/>
-                                <segments>
-                                    <segment title="Breakfast"/>
-                                    <segment title="Lunch"/>
-                                    <segment title="Dinner"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="hgb-gp-mKx" eventType="valueChanged" id="1W8-ki-Hx7"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" constant="65" id="WLS-yF-I7a"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" id="D2w-Zu-ceI"/>
+                            <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="Fgf-Cj-UCk"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="YZ3-eJ-BDk"/>
                             <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="aBh-UW-3og"/>
-                            <constraint firstItem="Tvq-jj-kuF" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" constant="10" id="aDv-UB-Ukf"/>
-                            <constraint firstItem="h0L-Kb-P5Q" firstAttribute="trailing" secondItem="Tvq-jj-kuF" secondAttribute="trailing" constant="65" id="aRj-E1-Hel"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="izh-E0-pfP"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="mbv-E0-4Nv"/>
-                            <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="Tvq-jj-kuF" secondAttribute="bottom" constant="10" id="sZE-nI-NRf"/>
+                            <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="wni-0I-Y5T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h0L-Kb-P5Q"/>
                     </view>
                     <navigationItem key="navigationItem" id="OOt-Rt-diH"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="Tvq-jj-kuF" id="JLX-ZK-cBP"/>
                         <outlet property="tableView" destination="1hh-Py-orv" id="3Al-jw-1B3"/>
                     </connections>
                 </viewController>
@@ -284,8 +300,8 @@
                 <navigationController restorationIdentifier="International Village" automaticallyAdjustsScrollViewInsets="NO" id="Ew7-LN-Rit" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="IV" image="IVBuildingIcon" id="uju-zu-OoX"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rfx-9O-PuC">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="rfx-9O-PuC">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -324,8 +340,8 @@
                 <navigationController restorationIdentifier="Stetson West" automaticallyAdjustsScrollViewInsets="NO" id="GTW-Nd-pCE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stwest" image="StwestBuildingIcon" id="PRM-D5-eha"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="48l-lD-DOe">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="48l-lD-DOe">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -343,8 +359,8 @@
                 <navigationController restorationIdentifier="Stetson East" automaticallyAdjustsScrollViewInsets="NO" id="8rk-ch-CAa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Steast" image="SteastBuildingIcon" id="eiB-kf-Rw0"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t3V-Xs-1ir">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="t3V-Xs-1ir">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
