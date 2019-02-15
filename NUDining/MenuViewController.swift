@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import DZNEmptyDataSet
 import SpringIndicator
+import MessageUI
 
 class MenuViewController : UIViewController, UISearchBarDelegate {
     
@@ -48,6 +49,8 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(onSendFeedback))
+        
         if currIdx == -1 {
             let userDefaults = UserDefaults.standard
             self.currIdx = userDefaults.integer(forKey: "index")
@@ -71,6 +74,10 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         
         refreshMenuData()
 
+    }
+    
+    @objc private func onSendFeedback(_ sender: Any) {
+        self.sendEmail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,5 +232,24 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource, DZNEm
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: "\(self.navigationItem.title ?? "") is closed today at this time.") 
+    }
+}
+
+extension MenuViewController: MFMailComposeViewControllerDelegate {
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["backe.n@husky.neu.edu"])
+            mail.setMessageBody("<p>Hello meNU app team, </p>", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

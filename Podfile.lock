@@ -112,6 +112,7 @@ PODS:
   - gRPC/Main (1.14.0):
     - gRPC-Core (= 1.14.0)
     - gRPC-RxLibrary (= 1.14.0)
+  - Instabug (8.0.20)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -133,6 +134,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Messaging
+  - Instabug
   - SCLAlertView
   - SDWebImage (~> 4.0)
   - SpringIndicator
@@ -159,6 +161,7 @@ SPEC REPOS:
     - gRPC-Core
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
+    - Instabug
     - leveldb-library
     - nanopb
     - Protobuf
@@ -187,6 +190,7 @@ SPEC CHECKSUMS:
   gRPC-Core: f4836515817c0eb479aeeb9cc27c91c4ba62a9f6
   gRPC-ProtoRPC: 76f6053639a842e1fb45fa82aa598bf3f4d9f66f
   gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
+  Instabug: 8b759fb4d9ecdbd224aa83b719baf18b962f974e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
@@ -196,6 +200,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: a722ed0cde74673590130f77f10cdbbd1f01e6b9
+PODFILE CHECKSUM: c512e58f31083bc604ef0c59339649b4ed7d787b
 
 COCOAPODS: 1.5.3

@@ -16,5 +16,6 @@ target 'NUDining' do
   pod 'SDWebImage', '~> 4.0'
   pod 'DZNEmptyDataSet'
   pod 'SpringIndicator'
+  pod 'Instabug'
 
 end
