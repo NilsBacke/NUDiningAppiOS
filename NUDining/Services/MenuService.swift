@@ -23,6 +23,7 @@ struct MenuService {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let todayString: String = dateFormatter.string(from: todaysDate)
+        print("todays date: \(todaysDate)")
         return todayString
     }
     

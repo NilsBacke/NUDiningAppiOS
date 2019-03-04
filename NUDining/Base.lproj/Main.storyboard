@@ -22,36 +22,8 @@
                                 <rect key="frame" x="0.0" y="140" width="375" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="segControlCell" id="IU6-ZW-oz4" customClass="SegControlTableViewCell" customModule="NUDining" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IU6-ZW-oz4" id="11P-5I-cVv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tvq-jj-kuF">
-                                                    <rect key="frame" x="65" y="8.0000000000000018" width="245" height="28.666666666666671"/>
-                                                    <segments>
-                                                        <segment title="Breakfast"/>
-                                                        <segment title="Lunch"/>
-                                                        <segment title="Dinner"/>
-                                                    </segments>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Tvq-jj-kuF" firstAttribute="top" secondItem="11P-5I-cVv" secondAttribute="top" constant="8" id="19m-1M-5pZ"/>
-                                                <constraint firstItem="Tvq-jj-kuF" firstAttribute="centerX" secondItem="11P-5I-cVv" secondAttribute="centerX" id="C8j-Mj-xeM"/>
-                                                <constraint firstAttribute="trailing" secondItem="Tvq-jj-kuF" secondAttribute="trailing" constant="65" id="Dkf-af-oec"/>
-                                                <constraint firstItem="Tvq-jj-kuF" firstAttribute="leading" secondItem="11P-5I-cVv" secondAttribute="leading" constant="65" id="Tec-pv-DJK"/>
-                                                <constraint firstAttribute="bottom" secondItem="Tvq-jj-kuF" secondAttribute="bottom" constant="8" id="qzZ-8f-HD6"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="segmentedControl" destination="Tvq-jj-kuF" id="jDX-aJ-BHz"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" rowHeight="155" id="9ht-B4-EUj" customClass="CustomTableViewCell" customModule="NUDining" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="155"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ht-B4-EUj" id="DyV-5Y-mmg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="154.66666666666666"/>
@@ -179,8 +151,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h0L-Kb-P5Q"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OOt-Rt-diH"/>
+                    <navigationItem key="navigationItem" id="OOt-Rt-diH">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="CtA-lu-dNt">
+                            <rect key="frame" x="78.666666666666686" y="7" width="218" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Breakfast"/>
+                                <segment title="Lunch"/>
+                                <segment title="Dinner"/>
+                            </segments>
+                            <connections>
+                                <action selector="indexChanged:" destination="hgb-gp-mKx" eventType="valueChanged" id="VC8-t6-ZRH"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="CtA-lu-dNt" id="Kcs-sH-UGG"/>
                         <outlet property="tableView" destination="1hh-Py-orv" id="3Al-jw-1B3"/>
                     </connections>
                 </viewController>

@@ -19,6 +19,8 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     var lunchMealStations: [MealStation]?
     var dinnerMealStations: [MealStation]?
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     var location: Location = .Steast
     
     @IBOutlet weak var tableView: UITableView!
@@ -45,17 +47,16 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Menu"
+        searchController.searchBar.placeholder = "Search Menu..."
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(onSendFeedback))
-        
-        if currIdx == -1 {
-            let userDefaults = UserDefaults.standard
-            self.currIdx = userDefaults.integer(forKey: "index")
-        }
-        
+        print("1view did load currIdx: \(self.currIdx)")
+        let userDefaults = UserDefaults.standard
+        self.currIdx = userDefaults.integer(forKey: "index")
+        print("2view did load currIdx: \(self.currIdx)")
+        self.segmentedControl.selectedSegmentIndex = self.currIdx
         let selectedIndex = self.tabBarController?.tabBar.tag
         switch selectedIndex {
         case 0:
@@ -71,9 +72,6 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
             location = .Steast
             navigationItem.title = "Stetson East"
         }
-        
-        refreshMenuData()
-
     }
     
     @objc private func onSendFeedback(_ sender: Any) {
@@ -93,7 +91,11 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         default:
             location = .Steast
         }
-        self.tableView.reloadData()
+        print("viewwillappear currIdx: \(self.currIdx)")
+        let userDefaults = UserDefaults.standard
+        self.currIdx = userDefaults.integer(forKey: "index")
+        self.segmentedControl.selectedSegmentIndex = self.currIdx
+        refreshMenuData()
     }
     
     private func refreshMenuData() {
@@ -114,14 +116,15 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
             group.leave()
         }
         group.notify(queue: .main) {
-            self.indexChanged2()
+            self.indexChanged("")
             self.tableView.reloadData()
         }
         
     }
-    
-    @objc private func indexChanged(segmentedControl: UISegmentedControl) {
-        self.currIdx = segmentedControl.selectedSegmentIndex
+    @IBAction func indexChanged(_ sender: Any) {
+        self.currIdx = self.segmentedControl.selectedSegmentIndex
+        let defaults = UserDefaults.standard
+        defaults.set(currIdx, forKey: "index")
         switch self.currIdx {
         case 0:
             self.mealStations = self.breakfastMealStations?.sorted {$0.title < $1.title}
@@ -132,28 +135,14 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         default:
             break
         }
-        print("currIdx (index changed): \(currIdx)")
         self.tableView.reloadData()
-    }
-    
-    private func indexChanged2() {
-        switch self.currIdx {
-        case 0:
-            self.mealStations = self.breakfastMealStations?.sorted {$0.title < $1.title}
-        case 1:
-            self.mealStations = self.lunchMealStations?.sorted {$0.title < $1.title}
-        case 2:
-            self.mealStations = self.dinnerMealStations?.sorted {$0.title < $1.title}
-        default:
-            break
-        }
-        print("currIdx: \(currIdx)")
+        print("index changed currIdx: \(self.currIdx)")
     }
 }
 
 extension MenuViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     // MARK: - Private instance methods
@@ -171,18 +160,11 @@ extension MenuViewController : UISearchResultsUpdating {
 extension MenuViewController : UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return nil
-        }
-        return mealStations?[section - 1].title
+        return mealStations?[section].title
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if mealStations?.count == 0 {
-            return 0
-        } else {
-            return mealStations?.count ?? 0 + 1
-        }
+        return mealStations?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -190,35 +172,19 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource, DZNEm
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "segControlCell", for: indexPath) as! SegControlTableViewCell
-            
-            cell.segmentedControl.selectedSegmentIndex = currIdx
-            
-            cell.segmentedControl.addTarget(self, action: #selector(indexChanged(segmentedControl:)), for: .valueChanged)
-            cell.segmentedControl.addTarget(self, action: #selector(indexChanged(segmentedControl:)), for: .touchUpInside)
-            
-            print("currIdx (cellForRowAt) \(currIdx)")
-            
-            
-            return cell
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath) as! CustomTableViewCell
         cell.parent = self
         if isFiltering() {
-            cell.items = mealStations![indexPath.section - 1].items
+            cell.items = mealStations![indexPath.section].items
             cell.filter(by: searchController.searchBar.text ?? "")
         } else {
-            cell.items = mealStations![indexPath.section - 1].items
+            cell.items = mealStations![indexPath.section].items
             cell.resetFiltering()
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 44.0
-        }
         return 165.0
     }
     
@@ -240,12 +206,12 @@ extension MenuViewController: MFMailComposeViewControllerDelegate {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["backe.n@husky.neu.edu"])
+            mail.setToRecipients(["backe.n@husky.neu.edu", "barde.n@husky.neu.edu", "xifaras.s@husky.neu.edu", "barnhart.ja@husky.neu.edu"])
             mail.setMessageBody("<p>Hello meNU app team, </p>", isHTML: true)
             
             present(mail, animated: true)
         } else {
-            // show failure alert
+            self.presentAlert(title: "Cannot send feedback", errorMessage: "This device is unable to send emails")
         }
     }
     
