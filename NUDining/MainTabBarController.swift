@@ -27,4 +27,9 @@ class MainTabBarController : UITabBarController {
         }
     }
     
+    static func storyboardInstance() -> MainTabBarController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController
+    }
+    
 }

@@ -19,6 +19,7 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     var lunchMealStations: [MealStation]?
     var dinnerMealStations: [MealStation]?
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var location: Location = .Steast
@@ -101,21 +102,25 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
     private func refreshMenuData() {
         let group = DispatchGroup()
         group.enter()
-        MenuService.getSpecificMenu(location: location, timeOfDay: .Breakfast) { menu in
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        MenuService.getSpecificMenu(location: location, timeOfDay: .Breakfast, progressCompletion: {_ in }) { menu in
             self.breakfastMealStations = menu?.mealStations
             group.leave()
         }
         group.enter()
-        MenuService.getSpecificMenu(location: location, timeOfDay: .Lunch) { menu in
+        MenuService.getSpecificMenu(location: location, timeOfDay: .Lunch, progressCompletion: {_ in }) { menu in
             self.lunchMealStations = menu?.mealStations
             group.leave()
         }
         group.enter()
-        MenuService.getSpecificMenu(location: location, timeOfDay: .Dinner) { menu in
+        MenuService.getSpecificMenu(location: location, timeOfDay: .Dinner, progressCompletion: {_ in }) { menu in
             self.dinnerMealStations = menu?.mealStations
             group.leave()
         }
         group.notify(queue: .main) {
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
             self.indexChanged("")
             self.tableView.reloadData()
         }

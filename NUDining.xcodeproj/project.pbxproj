@@ -11,6 +11,7 @@
 		ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0BFC8E21D7C6EE0009651C /* ImageService.swift */; };
 		ED2608AD22014EBD00EF8362 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2608AC22014EBD00EF8362 /* CustomImageView.swift */; };
 		ED267CF1222C854F007026DB /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED267CF0222C854F007026DB /* UIViewController.swift */; };
+		ED267CF3222CB36A007026DB /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */; };
 		ED37544522165F26000E63FE /* SegControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED37544422165F26000E63FE /* SegControlTableViewCell.swift */; };
 		ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C7E21C8649200D49A95 /* MealStation.swift */; };
 		ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C8121C8668A00D49A95 /* MenuService.swift */; };
@@ -40,6 +41,7 @@
 		ED0BFC8E21D7C6EE0009651C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		ED2608AC22014EBD00EF8362 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		ED267CF0222C854F007026DB /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		ED37544422165F26000E63FE /* SegControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegControlTableViewCell.swift; sourceTree = "<group>"; };
 		ED413C7E21C8649200D49A95 /* MealStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealStation.swift; sourceTree = "<group>"; };
 		ED413C8121C8668A00D49A95 /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				ED94D3CB21CF1F7F00461983 /* NotificationsViewController.swift */,
 				ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */,
 				EDB89EBA21EE55BC00BA6861 /* ItemDetailViewController.swift */,
+				ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				ED94D3C621CF1EC100461983 /* MenuViewController.swift in Sources */,
 				ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */,
 				ED70EA2321DA773400D272CA /* CustomTableViewCell.swift in Sources */,
+				ED267CF3222CB36A007026DB /* LoadingScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

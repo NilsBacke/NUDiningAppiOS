@@ -36,7 +36,7 @@ struct MenuService {
     // nil cases:
     // if location is closed that day
     // if location does not serve that time of day
-    public static func getSpecificMenu(location: Location, timeOfDay: TimeOfDay, completion: @escaping (Menu?) -> Void) {
+    public static func getSpecificMenu(location: Location, timeOfDay: TimeOfDay, progressCompletion: @escaping (Double) -> Void, completion: @escaping (Menu?) -> Void) {
         // check the local storage of menus
         if let _menus = menus {
             guard let dict = _menus[location]?[timeOfDay] else {
@@ -44,7 +44,7 @@ struct MenuService {
             }
             return completion(dict)
         } else { // if the local storage doesn't exist, pull from the api
-            self.getAllMenus { menuDict in
+            self.getAllMenus(progressCompletion: progressCompletion) { menuDict in
                 guard let dict = menuDict[location]?[timeOfDay] else {
                     return completion(nil)
                 }
@@ -54,13 +54,13 @@ struct MenuService {
     }
     
     // return every menu for every location and time of day
-    private static func getAllMenus(completion: @escaping (MenuDict) -> Void) {
+    private static func getAllMenus(progressCompletion: @escaping (Double) -> Void, completion: @escaping (MenuDict) -> Void) {
         var menus = MenuDict()
         let group1 = DispatchGroup()
         for loc in locations {
             // dispatch groups are used to synchronously perform the API fetch
             group1.enter()
-            getJSONFromURL(urlPath: getURL(location: loc, date: todaysDate)) { jsonData in
+            getJSONFromURL(urlPath: getURL(location: loc, date: todaysDate), progressCompletion: progressCompletion) { jsonData in
                 if let json = jsonData {
                     let dict = getMenuFromJSON(json, location: loc)
                     menus[loc] = dict
@@ -128,17 +128,21 @@ struct MenuService {
     
     // returns the JSON data from the given url
     // uses Alamofire
-    private static func getJSONFromURL(urlPath: String, completion: @escaping (JSON?) -> Void) {
-        Alamofire.request(urlPath).responseJSON { response in
-            if response.result.isSuccess {
-                print("Success")
-                let json: JSON = JSON(response.result.value!)
-                return completion(json)
-            } else {
-                print("Failure")
-                print("Error \(String(describing: response.result.error))")
-                return completion(nil)
+    private static func getJSONFromURL(urlPath: String, progressCompletion: @escaping (Double) -> Void, completion: @escaping (JSON?) -> Void) {
+        Alamofire.request(urlPath).downloadProgress { progress in
+                print("Download progress: \(progress.fractionCompleted)")
+                progressCompletion(progress.fractionCompleted)
             }
+            .responseJSON { response in
+                if response.result.isSuccess {
+                    print("Success")
+                    let json: JSON = JSON(response.result.value!)
+                    return completion(json)
+                } else {
+                    print("Failure")
+                    print("Error \(String(describing: response.result.error))")
+                    return completion(nil)
+                }
         }
     }
     

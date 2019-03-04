@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dkK-Pj-AW0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fod-ba-IQC">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -138,12 +138,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XQH-eX-zkQ">
+                                <rect key="frame" x="162.66666666666666" y="381" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bTj-tJ-OI0"/>
+                                    <constraint firstAttribute="width" constant="50" id="lMn-gP-IaI"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="XQH-eX-zkQ" firstAttribute="centerY" secondItem="deN-mV-yvH" secondAttribute="centerY" id="Bwr-5k-l0D"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="top" secondItem="h0L-Kb-P5Q" secondAttribute="top" id="D2w-Zu-ceI"/>
                             <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="Fgf-Cj-UCk"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="YZ3-eJ-BDk"/>
+                            <constraint firstItem="XQH-eX-zkQ" firstAttribute="centerX" secondItem="deN-mV-yvH" secondAttribute="centerX" id="Yjy-8z-RpC"/>
                             <constraint firstAttribute="bottom" secondItem="1hh-Py-orv" secondAttribute="bottom" id="aBh-UW-3og"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="trailing" secondItem="h0L-Kb-P5Q" secondAttribute="trailing" id="izh-E0-pfP"/>
                             <constraint firstItem="1hh-Py-orv" firstAttribute="leading" secondItem="h0L-Kb-P5Q" secondAttribute="leading" id="mbv-E0-4Nv"/>
@@ -167,6 +176,7 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="XQH-eX-zkQ" id="9DZ-na-xez"/>
                         <outlet property="segmentedControl" destination="CtA-lu-dNt" id="Kcs-sH-UGG"/>
                         <outlet property="tableView" destination="1hh-Py-orv" id="3Al-jw-1B3"/>
                     </connections>
@@ -300,10 +310,58 @@
             </objects>
             <point key="canvasLocation" x="-1271" y="-1812"/>
         </scene>
+        <!--Loading Screen View Controller-->
+        <scene sceneID="6qb-vd-LS9">
+            <objects>
+                <viewController storyboardIdentifier="LoadingScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fod-ba-IQC" customClass="LoadingScreenViewController" customModule="NUDining" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hep-ys-xHx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U6Y-pm-0mh">
+                                <rect key="frame" x="87.666666666666686" y="623" width="200" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6sF-ns-5dI"/>
+                                    <constraint firstAttribute="height" constant="5" id="pgE-xu-8YS"/>
+                                </constraints>
+                            </progressView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="kNF-nS-VpW">
+                                <rect key="frame" x="67.666666666666686" y="286" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="IEz-rX-fDZ"/>
+                                    <constraint firstAttribute="width" constant="240" id="uSf-BL-WBp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="meNU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txd-rU-xRl">
+                                <rect key="frame" x="107.33333333333333" y="144" width="160.33333333333337" height="67"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="56"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Txd-rU-xRl" firstAttribute="centerX" secondItem="hep-ys-xHx" secondAttribute="centerX" id="5Sp-l6-32d"/>
+                            <constraint firstItem="kNF-nS-VpW" firstAttribute="centerY" secondItem="hep-ys-xHx" secondAttribute="centerY" id="6or-8R-Opj"/>
+                            <constraint firstItem="kNF-nS-VpW" firstAttribute="centerX" secondItem="hep-ys-xHx" secondAttribute="centerX" id="CWk-CM-yR1"/>
+                            <constraint firstItem="Txd-rU-xRl" firstAttribute="top" secondItem="No3-MK-GnV" secondAttribute="top" constant="100" id="Mm5-y4-MQ1"/>
+                            <constraint firstItem="No3-MK-GnV" firstAttribute="bottom" secondItem="U6Y-pm-0mh" secondAttribute="bottom" constant="150" id="WrR-yJ-hbx"/>
+                            <constraint firstItem="U6Y-pm-0mh" firstAttribute="centerX" secondItem="hep-ys-xHx" secondAttribute="centerX" id="qIp-6K-gs0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="No3-MK-GnV"/>
+                    </view>
+                    <connections>
+                        <outlet property="progressBar" destination="U6Y-pm-0mh" id="x4u-jW-LHf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Da-NQ-YbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3282" y="-1278"/>
+        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="TDh-hz-4PL">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dkK-Pj-AW0" customClass="MainTabBarController" customModule="NUDining" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dkK-Pj-AW0" customClass="MainTabBarController" customModule="NUDining" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s0y-uy-miz">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -365,6 +423,7 @@
         <image name="IVBuildingIcon" width="18" height="18"/>
         <image name="SteastBuildingIcon" width="18" height="18"/>
         <image name="StwestBuildingIcon" width="18" height="18"/>
+        <image name="icon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="X0Q-w9-Cxm"/>
