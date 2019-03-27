@@ -17,5 +17,7 @@ target 'NUDining' do
   pod 'DZNEmptyDataSet'
   pod 'SpringIndicator'
   pod 'Instabug'
+  pod 'Nuke', '~> 7.0'
+  pod 'Firebase/InAppMessagingDisplay'
 
 end

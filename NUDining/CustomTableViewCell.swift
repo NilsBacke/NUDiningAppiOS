@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SCLAlertView
 import SDWebImage
+import Nuke
 
 class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -56,22 +57,46 @@ class CustomTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        let name = filteredItems[indexPath.item].name
-        let ingredients = filteredItems[indexPath.item].ingredients
+        let item = filteredItems[indexPath.item]
+        print("imageURL: \(item.imageURL)")
+        let name = item.name
+        let ingredients = item.ingredients
         cell.nameLabel.text = name
         cell.ingredientsLabel.text = ingredients
         
         cell.imageView.contentMode = .scaleAspectFill
-        if let img = filteredItems[indexPath.item].image {
+        if let img = item.image {
             cell.imageView.image = img
         } else {
-            cell.imageView?.image = UIImage.init(named: "placeholder")
-            ImageService.getImageURLFromFirestore(name: name) { urlOpt in
-                if let url = urlOpt {
-                    cell.imageView?.sd_setImage(with: url, placeholderImage: UIImage.init(named: "placeholder"), options: SDWebImageOptions.continueInBackground) {
-                        (image, error, cacheType, imageURL) in
-                        if self.filteredItems.count > indexPath.item {
-                            self.filteredItems[indexPath.item].image = image
+            cell.imageView.image = UIImage(named: "placeholder")
+            if let url = item.imageURL, url.contains("http") {
+                print("loading image")
+                print(url)
+                let task = ImagePipeline.shared.loadImage(
+                    with: URL(string: url)!,
+                    completion: { response, _ in
+                        cell.imageView.image = response?.image
+                        item.image = response?.image
+                    }
+                )
+            } else {
+                ImageService.fetchImageURLFromBing(query: item.name) { urlOpt in
+                    if let url = urlOpt {
+                        print("updating image")
+                        let urlStr = url.absoluteString
+                        item.imageURL = urlStr
+                        
+                        let task = ImagePipeline.shared.loadImage(
+                            with: url,
+                            completion: { response, _ in
+                                cell.imageView.image = response?.image
+                                item.image = response?.image
+                        }
+                        )
+                        ImageService.saveImageURLToFirebase(name: item.name, url: urlStr) { err in
+                            if let error = err {
+                                print("Picture failed to save to firebase: \(error)")
+                            }
                         }
                     }
                 }

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../ImageAPIPlayground.playground">
+   </FileRef>
+   <FileRef
       location = "group:NUDining.xcodeproj">
    </FileRef>
    <FileRef

@@ -119,10 +119,12 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
             group.leave()
         }
         group.notify(queue: .main) {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-            self.indexChanged("")
-            self.tableView.reloadData()
+            ImageService.setAllImages(mealStations: [self.breakfastMealStations, self.lunchMealStations, self.dinnerMealStations], completion: {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.indexChanged("")
+                self.tableView.reloadData()
+            })
         }
         
     }

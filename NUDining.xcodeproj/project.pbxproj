@@ -12,6 +12,7 @@
 		ED2608AD22014EBD00EF8362 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2608AC22014EBD00EF8362 /* CustomImageView.swift */; };
 		ED267CF1222C854F007026DB /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED267CF0222C854F007026DB /* UIViewController.swift */; };
 		ED267CF3222CB36A007026DB /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */; };
+		ED267CF5222D926C007026DB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED267CF4222D926C007026DB /* StoreKit.framework */; };
 		ED37544522165F26000E63FE /* SegControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED37544422165F26000E63FE /* SegControlTableViewCell.swift */; };
 		ED413C7F21C8649200D49A95 /* MealStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C7E21C8649200D49A95 /* MealStation.swift */; };
 		ED413C8221C8668A00D49A95 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED413C8121C8668A00D49A95 /* MenuService.swift */; };
@@ -42,6 +43,7 @@
 		ED2608AC22014EBD00EF8362 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		ED267CF0222C854F007026DB /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
+		ED267CF4222D926C007026DB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		ED37544422165F26000E63FE /* SegControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegControlTableViewCell.swift; sourceTree = "<group>"; };
 		ED413C7E21C8649200D49A95 /* MealStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealStation.swift; sourceTree = "<group>"; };
 		ED413C8121C8668A00D49A95 /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CADB974E3D906FA57276B86 /* Pods_NUDining.framework in Frameworks */,
+				ED267CF5222D926C007026DB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +94,7 @@
 		BB5F57268EA977FE3FECE40B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED267CF4222D926C007026DB /* StoreKit.framework */,
 				1E00C82AC85579D536DD80EB /* Pods_NUDining.framework */,
 			);
 			name = Frameworks;
@@ -199,6 +203,7 @@
 				ED5D17C321C60049001C6664 /* Frameworks */,
 				ED5D17C421C60049001C6664 /* Resources */,
 				0710C1FAE272DE016A82D213 /* [CP] Embed Pods Frameworks */,
+				8E8B090FFC00B3B24FAD6726 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,6 +227,9 @@
 					ED5D17C521C60049001C6664 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -278,6 +286,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${PODS_ROOT}/Instabug/Instabug.framework",
 				"${PODS_ROOT}/Instabug/Instabug.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -302,6 +311,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Instabug.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -319,6 +329,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NUDining/Pods-NUDining-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E8B090FFC00B3B24FAD6726 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NUDining/Pods-NUDining-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay/InAppMessagingDisplayResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NUDining/Pods-NUDining-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3272CAF21C2D3D251FB5042 /* [CP] Check Pods Manifest.lock */ = {

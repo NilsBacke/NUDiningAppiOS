@@ -15,6 +15,9 @@ PODS:
   - Firebase/Firestore (5.11.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (= 0.13.6)
+  - Firebase/InAppMessagingDisplay (5.11.0):
+    - Firebase/CoreOnly
+    - FirebaseInAppMessagingDisplay (= 0.12.0)
   - Firebase/Messaging (5.11.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.2.1)
@@ -48,6 +51,14 @@ PODS:
     - leveldb-library (~> 1.20)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
+  - FirebaseInAppMessaging (0.12.1):
+    - FirebaseAnalytics (~> 5.3)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
+    - GoogleUtilities/Environment (~> 5.0)
+  - FirebaseInAppMessagingDisplay (0.12.0):
+    - FirebaseCore
+    - FirebaseInAppMessaging (>= 0.12.0)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.3)
@@ -119,6 +130,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Nuke (7.5.2)
   - Protobuf (3.6.1)
   - SCLAlertView (0.8)
   - SDWebImage (4.4.3):
@@ -133,8 +145,10 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - Firebase/Core
   - Firebase/Firestore
+  - Firebase/InAppMessagingDisplay
   - Firebase/Messaging
   - Instabug
+  - Nuke (~> 7.0)
   - SCLAlertView
   - SDWebImage (~> 4.0)
   - SpringIndicator
@@ -152,6 +166,8 @@ SPEC REPOS:
     - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseFirestore
+    - FirebaseInAppMessaging
+    - FirebaseInAppMessagingDisplay
     - FirebaseInstanceID
     - FirebaseMessaging
     - GoogleAppMeasurement
@@ -164,6 +180,7 @@ SPEC REPOS:
     - Instabug
     - leveldb-library
     - nanopb
+    - Nuke
     - Protobuf
     - SCLAlertView
     - SDWebImage
@@ -181,6 +198,8 @@ SPEC CHECKSUMS:
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: d16552f06821489ce1affe2e5e3e5593402ddfe3
   FirebaseFirestore: 162502df850b584126c609f3449acfb7230d8c1a
+  FirebaseInAppMessaging: aa04bdbbee12aa132156e6085b3bfad7d6e0dcbb
+  FirebaseInAppMessagingDisplay: 4a154d15e3a3480bab28241c9241084009f1f8b1
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
@@ -193,6 +212,7 @@ SPEC CHECKSUMS:
   Instabug: 8b759fb4d9ecdbd224aa83b719baf18b962f974e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
@@ -200,6 +220,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: c512e58f31083bc604ef0c59339649b4ed7d787b
+PODFILE CHECKSUM: ec9165fe5249bc694a30ee4f38333ae3828c7034
 
 COCOAPODS: 1.5.3

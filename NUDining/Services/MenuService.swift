@@ -121,7 +121,7 @@ struct MenuService {
             let name: String = item["name"].stringValue
             var ingredients: String = item["ingredients"].stringValue
             ingredients = ingredients.replacingOccurrences(of: "&amp;", with: "&")
-            items.append(Item(name: name, ingredients: ingredients, image: nil))
+            items.append(Item(name: name, ingredients: ingredients, imageURL: nil))
         }
         return MealStation(title: name, items: items)
     }
