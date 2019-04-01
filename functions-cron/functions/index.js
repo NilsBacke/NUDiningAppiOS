@@ -11,19 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-const functions = require("firebase-functions");
-const fillFood = require("./fillFood.js");
 
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.io/#x15.4.4.19
+
+const functions = require("firebase-functions");
+//const fillFood = require("./fillFood.js");
+const messaging = require("./messaging.js");
+/*
 fillFood.getFoodsFromAPI();
 
 exports.fillFood = functions.https.onRequest(async (req, res) => {
   return await fillFood.getFoodsFromAPI();
 });
+*/
 
-exports.daily_job = functions.pubsub.topic("daily-tick").onPublish(message => {
-  console.log("This job is run every 24 hours!");
+const breakfast = "Breakfast";
+const lunch = "Lunch";
+const dinner = "Dinner";
 
-  // code goes here
-
-  return true;
-});
+exports.breakfast_pns = functions.pubsub.topic("breakfast-tick").onPublish((msg, context) => { return messaging.execute(msg, context, breakfast); });
+exports.lunch_pns = functions.pubsub.topic("lunch-tick").onPublish((msg, context) => { return messaging.execute(msg, context, lunch); });
+exports.dinner_pns = functions.pubsub.topic("dinner-tick").onPublish((msg, context) => { return messaging.execute(msg, context, dinner); });
