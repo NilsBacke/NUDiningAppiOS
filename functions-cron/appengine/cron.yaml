@@ -1,0 +1,16 @@
+cron:
+  - description: Push a "tick" onto pubsub every day
+    url: /publish/daily-tick
+    schedule: every 24 hours
+  - description: breakfast tick
+    url: /publish/breakfast-tick
+    schedule: every day 07:00
+    timezone: America/New_York
+  - description: lunch tick
+    url: /publish/lunch-tick
+    schedule: every day 11:00
+    timezone: America/New_York
+  - description: dinner tick
+    url: /publish/dinner-tick
+    schedule: every day 16:00
+    timezone: America/New_York
