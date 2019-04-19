@@ -274,7 +274,7 @@ function getLocationsJSON(site_id) {
       })
       .catch(error => {
         console.log(error);
-        resolve("error");
+        reject("error");
       });
   });
 }
@@ -300,7 +300,7 @@ function getMenuJSON(site_id, location_id, date) {
       })
       .catch(error => {
         console.log(error);
-        resolve("error");
+        reject("error");
       })
   })
 }
