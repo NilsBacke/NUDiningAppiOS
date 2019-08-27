@@ -38,8 +38,6 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView()
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
         
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -52,7 +50,11 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        var buttonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showIceCreamView))
+        buttonItem.image = UIImage(named: "ice-cream")
+//        self.navigationItem.leftBarButtonItem = buttonItem
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(onSendFeedback))
+        
         print("1view did load currIdx: \(self.currIdx)")
         let userDefaults = UserDefaults.standard
         self.currIdx = userDefaults.integer(forKey: "index")
@@ -79,8 +81,14 @@ class MenuViewController : UIViewController, UISearchBarDelegate {
         self.sendEmail()
     }
     
+    @objc private func showIceCreamView() {
+        let iceCreamVC = IceCreamViewController.storyboardInstance()
+        self.navigationController?.pushViewController(iceCreamVC!, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = parent?.restorationIdentifier
         switch self.navigationItem.title {
         case "Stetson East":

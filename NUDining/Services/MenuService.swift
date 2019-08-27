@@ -118,7 +118,10 @@ struct MenuService {
         let itemList: [JSON] = category["items"].arrayValue
         var items: [Item] = []
         for item in itemList {
-            let name: String = item["name"].stringValue
+            var name: String = item["name"].stringValue
+            if name.contains("/") {
+                name = name.replacingOccurrences(of: "/", with: "")
+            }
             var ingredients: String = item["ingredients"].stringValue
             ingredients = ingredients.replacingOccurrences(of: "&amp;", with: "&")
             items.append(Item(name: name, ingredients: ingredients, imageURL: nil))
@@ -137,6 +140,7 @@ struct MenuService {
                 if response.result.isSuccess {
                     print("Success")
                     let json: JSON = JSON(response.result.value!)
+                    print("json: \(json)")
                     return completion(json)
                 } else {
                     print("Failure")

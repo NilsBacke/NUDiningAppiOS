@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5CADB974E3D906FA57276B86 /* Pods_NUDining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E00C82AC85579D536DD80EB /* Pods_NUDining.framework */; };
 		ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0BFC8E21D7C6EE0009651C /* ImageService.swift */; };
+		ED250640225D0A84006468A2 /* IceCreamViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED25063F225D0A84006468A2 /* IceCreamViewController.storyboard */; };
+		ED250642225D0D27006468A2 /* IceCreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED250641225D0D27006468A2 /* IceCreamTableViewCell.swift */; };
+		ED250644225D0D47006468A2 /* IceCreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED250643225D0D47006468A2 /* IceCreamViewController.swift */; };
 		ED2608AD22014EBD00EF8362 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2608AC22014EBD00EF8362 /* CustomImageView.swift */; };
 		ED267CF1222C854F007026DB /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED267CF0222C854F007026DB /* UIViewController.swift */; };
 		ED267CF3222CB36A007026DB /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */; };
@@ -40,6 +43,9 @@
 		24AA1110F902336D714C4FC2 /* Pods-NUDining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUDining.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUDining/Pods-NUDining.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1260E576AF70964B794D1D /* Pods-NUDining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUDining.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUDining/Pods-NUDining.release.xcconfig"; sourceTree = "<group>"; };
 		ED0BFC8E21D7C6EE0009651C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		ED25063F225D0A84006468A2 /* IceCreamViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = IceCreamViewController.storyboard; sourceTree = "<group>"; };
+		ED250641225D0D27006468A2 /* IceCreamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCreamTableViewCell.swift; sourceTree = "<group>"; };
+		ED250643225D0D47006468A2 /* IceCreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCreamViewController.swift; sourceTree = "<group>"; };
 		ED2608AC22014EBD00EF8362 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		ED267CF0222C854F007026DB /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 				EDB89EB821EE55A200BA6861 /* ItemDetailViewController.storyboard */,
 				ED2608AC22014EBD00EF8362 /* CustomImageView.swift */,
 				ED37544422165F26000E63FE /* SegControlTableViewCell.swift */,
+				ED25063F225D0A84006468A2 /* IceCreamViewController.storyboard */,
+				ED250641225D0D27006468A2 /* IceCreamTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 				ED94D3CF21D08A4500461983 /* AddPreferredFoodViewController.swift */,
 				EDB89EBA21EE55BC00BA6861 /* ItemDetailViewController.swift */,
 				ED267CF2222CB36A007026DB /* LoadingScreenViewController.swift */,
+				ED250643225D0D47006468A2 /* IceCreamViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -262,6 +271,7 @@
 			files = (
 				ED5D17D421C6004B001C6664 /* LaunchScreen.storyboard in Resources */,
 				ED5D17FA21C6018B001C6664 /* GoogleService-Info.plist in Resources */,
+				ED250640225D0A84006468A2 /* IceCreamViewController.storyboard in Resources */,
 				ED5D17D121C6004B001C6664 /* Assets.xcassets in Resources */,
 				EDB89EB921EE55A200BA6861 /* ItemDetailViewController.storyboard in Resources */,
 				ED5D17CF21C60049001C6664 /* Main.storyboard in Resources */,
@@ -383,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED94D3CC21CF1F7F00461983 /* NotificationsViewController.swift in Sources */,
+				ED250644225D0D47006468A2 /* IceCreamViewController.swift in Sources */,
 				EDCD888F21E0149C005EA291 /* Colors.swift in Sources */,
 				ED267CF1222C854F007026DB /* UIViewController.swift in Sources */,
 				ED70EA2521DB2CA400D272CA /* CollectionViewCell.swift in Sources */,
@@ -392,6 +403,7 @@
 				ED7194FB21C739800086BE7E /* Menu.swift in Sources */,
 				ED5D17CA21C60049001C6664 /* AppDelegate.swift in Sources */,
 				ED94D3D021D08A4500461983 /* AddPreferredFoodViewController.swift in Sources */,
+				ED250642225D0D27006468A2 /* IceCreamTableViewCell.swift in Sources */,
 				ED2608AD22014EBD00EF8362 /* CustomImageView.swift in Sources */,
 				ED37544522165F26000E63FE /* SegControlTableViewCell.swift in Sources */,
 				ED0BFC8F21D7C6EE0009651C /* ImageService.swift in Sources */,
